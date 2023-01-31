@@ -1,6 +1,8 @@
 package model;
 
-public class ReserveBean {
+import java.io.Serializable;
+
+public class ReserveBean implements Serializable{
 	private int reserveId, userId, busId, seats;
 	
 	public ReserveBean() { }

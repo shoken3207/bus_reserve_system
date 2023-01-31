@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.BusBean;
+import model.InsertBusBean;
 
 public class BusDao extends CommonDao {
 	public BusDao() {
@@ -54,5 +55,23 @@ public class BusDao extends CommonDao {
 	
 	public boolean isExistsBus(int busId) {
 		return this.findTimetable(busId) != null;
+	}
+
+	public void insert(InsertBusBean[] buses) {
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			for (InsertBusBean bus: buses) {
+				String sql = "INSERT INTO timetable(start, end, departure, maxPassenger, price) VALUES(?, ?, ?, ?, ?);";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1, bus.getStart());
+				ps.setString(2, bus.getEnd());
+				ps.setDate(3, bus.getDeparture());
+				ps.setInt(4, bus.getMaxPassenger());
+				ps.setInt(5, bus.getPrice());
+
+				ps.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
