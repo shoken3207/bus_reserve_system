@@ -1,16 +1,47 @@
 package model;
 
 public class ReserveBean {
-	private int id;
+	private int reserveId, userId, busId, seats;
 	
 	public ReserveBean() { }
 
-	public int getId() {
-		return id;
+	public ReserveBean(int reserveId, int userId, int busId, int seats) {
+		this.setReserveId(reserveId);
+		this.setUserId(userId);
+		this.setBusId(busId);
+		this.setSeats(seats);
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getReserveId() {
+		return reserveId;
+	}
+
+	public void setReserveId(int reserveId) {
+		this.reserveId = reserveId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getBusId() {
+		return busId;
+	}
+
+	public void setBusId(int busId) {
+		this.busId = busId;
+	}
+
+	public int getSeats() {
+		return seats;
+	}
+
+	public void setSeats(int seats) {
+		this.seats = seats;
 	}
 
 }

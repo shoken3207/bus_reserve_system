@@ -10,29 +10,27 @@ import java.util.List;
 
 import model.ReserveBean;
 
-public class ReserveDao {
-//	private final String URL = "fukushima-pc";
-//	private final String USER = "teamF";
-//	private final String PASS = "figMySQL";
-	
-	private final String URL = "localhost:54321";
-	private final String USER = "root";
-	private final String PASS = "passsword";
+public class ReserveDao extends CommonDao {
+	public ReserveDao() {
+		this.reserveDao = this;
+	}
 
 	public List<ReserveBean> findAll() {
 		List<ReserveBean> reserves = new ArrayList<ReserveBean>();
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "SELECT * FROM sample";
+			String sql = "SELECT * FROM reserve";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				int id = rs.getInt("id");
-				String name = rs.getString("name");
+				int reserveId = rs.getInt("reserveId");
+				int userId = rs.getInt("userId");
+				int busId = rs.getInt("busId");
+				int seats = rs.getInt("seats");
 
-				System.out.println("id: " + id + ", name: " + name + "\n");
-				ReserveBean reserve = new ReserveBean();
+				ReserveBean reserve = new ReserveBean(reserveId, userId, busId, seats);
+				System.out.println("aaa");
 				reserves.add(reserve);
 			}
 		} catch (SQLException e) {
@@ -40,5 +38,19 @@ public class ReserveDao {
 		}
 
 		return reserves;
+	}
+
+	public ReserveBean findReserve(int id) {
+		List<ReserveBean> reserves = this.findAll();
+
+		for (ReserveBean reserve: reserves) {
+			if (reserve.getReserveId() == id) return reserve;
+		}
+
+		return null;
+	}
+
+	public boolean isExistsReserve(int id) {
+		return this.findReserve(id) != null;
 	}
 }
