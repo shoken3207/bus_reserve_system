@@ -25,14 +25,14 @@ public class BusDao extends CommonDao {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				int userId = rs.getInt("busId");
-				String password = rs.getString("start");
-				String email = rs.getString("end");
+				int busId = rs.getInt("busId");
+				String start = rs.getString("start");
+				String end = rs.getString("end");
 				Date departure = rs.getDate("departure");
 				int maxPassenger = rs.getInt("maxPassenger");
 				int price = rs.getInt("price");
 
-				BusBean bus = new BusBean(userId, password, email, departure, maxPassenger, price);
+				BusBean bus = new BusBean(busId, start, end, departure, maxPassenger, price);
 				buses.add(bus);
 			}
 		} catch (SQLException e) {

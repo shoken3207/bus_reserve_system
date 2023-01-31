@@ -23,22 +23,28 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("reserve.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
-		System.out.println(email + ": " + password);
 
 		UserDao userDao = new UserDao();
 		UserBean user = userDao.getUserByEmail(email);
-		
-		if (user == null) {
-			
+
+		if (user != null && user.getPassword().equals(password)) {
+			System.out.println(user);
+			session.setAttribute("user", user);
 		}
 
-		session.setAttribute("user", user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("");
 		dispatcher.forward(request, response);
 	}
