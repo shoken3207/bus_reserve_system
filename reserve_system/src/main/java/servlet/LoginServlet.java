@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("user", user);
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/LoginResult.jsp");
 		dispatcher.forward(request, response);
 	}
 

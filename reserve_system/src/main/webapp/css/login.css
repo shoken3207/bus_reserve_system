@@ -1,0 +1,46 @@
+* {
+	box-sizing:border-box;
+}
+
+body{
+	margin:0;
+	text-align: center;
+}
+
+h1 {
+	margin: 0;
+	padding: 2% 0 ;
+}
+
+/*外側要素　背景青*/
+.h1_div_out {
+    background-color:lightseagreen;
+    text-align: center; /*div_int_02のテキストを中央揃えにする*/
+    margin-bottom: 0;
+}
+
+/*内側要素　背景黒　文字周辺だけ黒背景にして青背景を分断する*/
+.h1_div_into {
+    /*border: solid 6px steelblue;
+    border-width: 0 610px 0 610px;*/
+    background-color: white;
+    width: 30%;
+    margin: 0 auto; /*div_int_02の要素自体を中央揃えにする*/
+}
+
+main {
+	margin: 5% 0;
+}
+
+
+form {
+	width :50%;
+	text-align: center;
+	margin:5%;
+}
+
+.main_sub {
+	background-color:lawngreen ;
+	padding: 10px;
+}
+
