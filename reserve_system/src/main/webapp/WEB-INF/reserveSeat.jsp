@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.Arrays" %>
+<%@ page import="model.BusBean, java.util.Arrays" %>
 <%
+	BusBean bus = (BusBean) session.getAttribute("bus");
 	String[] reserved = new String[]{"2a", "2b", "4c", "5c", "6d", "7a"};
 	String[] alpha = new String[]{"a", "b", "c", "d"};
     int maxPassenger = 40;
@@ -19,7 +20,7 @@
     </header>
     <div class="main">
         <div class="bus">
-            <% for (int i = 1; i <= maxPassenger / 4; i++) { %>
+            <% for (int i = 0; i <= maxPassenger / 4; i++) { %>
                 <div class="row">
                     <%
                     	for (int j = 0; j < 4; j++) {
@@ -35,7 +36,12 @@
         </div>
     </div>
     <div class="info">
-        <div id="seats"></div>
+        <div id="seats"></div><br>
+        <button onclick="reset()">リセット</button>
+        <form action="ReserveSeatServlet" method="POST" name="seatForm">
+            <input type="hidden" name="selectedSeats">
+            <input type="submit" id="submit" value="確定">
+        </form>
     </div>
 </body>
 <script src="js/reserveSeat.js"></script>

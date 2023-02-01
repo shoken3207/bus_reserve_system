@@ -1,14 +1,16 @@
 const seats  = document.getElementById('seats');
 const submit = document.getElementById('submit');
+const boxes = document.getElementsByClassName('box');
 
 let counter = 0;
 let k = 0;
 const alpha = ['a', 'b', 'c', 'd'];
 let selectedList = [];
 
+submit.disabled = true;
 seats.innerHTML = `${counter}席確保`;
 
-Array.from(document.getElementsByClassName('box')).forEach(e => {
+Array.from(boxes).forEach(e => {
     const i = Math.floor(k / 4);
     const j = k % 4;
     k++;
@@ -26,10 +28,17 @@ Array.from(document.getElementsByClassName('box')).forEach(e => {
         }
         seats.innerHTML = `${counter}席確保`;
         document.seatForm.selectedSeats.value = selectedList;
-        console.log(selectedList)
+        submit.disabled = counter === 0;
     })
 })
 
-submit.addEventListener('click', () => {
-    document.seatForm.submit();
-})
+const reset = () => {
+	Array.from(boxes).forEach(e => {
+		e.classList.remove('selected');
+	})
+	selectedList = [];
+	document.seatForm.selectedSeats.value = selectedList;
+	submit.disabled = true;
+	counter = 0;
+	seats.innerHTML = `${counter}席確保`;
+}
