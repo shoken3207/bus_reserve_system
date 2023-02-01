@@ -17,11 +17,11 @@ public class BusDao extends CommonDao {
 		this.busDao = this;
 	}
 
-	public List<BusBean> findAll() {
-		List<BusBean> buses = new ArrayList<BusBean>();
+	public ArrayList<BusBean> findAll() {
+		ArrayList<BusBean> buses = new ArrayList<BusBean>();
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "SELECT * FROM user";
+			String sql = "SELECT * FROM timetable";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 

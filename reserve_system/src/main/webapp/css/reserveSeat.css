@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.box {
+    border: 1px solid #000;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.selected {
+	background-color: blue;
+}
+
+.reserved {
+	background-color: gray;	
+}
