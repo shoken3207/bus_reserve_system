@@ -26,23 +26,15 @@
 		</header>
 		
 		<main>
-			
-			<form action="login" method="post">
-			<div class="form_table">
-				<table width="400" height="50" border="2">
-					<tr>
-						<td width="250">
-							<div class="form_div">
-								Eメール：<input type="text" name="email"><br>
-								パスワード：<input type="password" name="password"><br>
-							</div>
-						</td>
-						<td><input class = main_sub type="submit" value="ログイン"></td>
-					</tr>
-				</table>
-			</div>
-				
+		
+			<form  action="login" method="post">
+			  
+			  <input placeholder="E-mail" type="text" name="email"/>
+			  <input placeholder="Password" type="password" name="password"/>
+			  <input class = main_sub type="submit" value="ログイン">
+			  
 			</form>
+
 		</main>
 		
 		<footer></footer>

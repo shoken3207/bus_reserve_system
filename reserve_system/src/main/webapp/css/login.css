@@ -28,19 +28,8 @@ h1 {
     margin: 0 auto; /*div_int_02の要素自体を中央揃えにする*/
 }
 
-main {
-	margin: 5% 0;
+input {
+	width :10%;
+	height : 3%;
+	border :2px;
 }
-
-
-form {
-	width :50%;
-	text-align: center;
-	margin:5%;
-}
-
-.main_sub {
-	background-color:lawngreen ;
-	padding: 10px;
-}
-
