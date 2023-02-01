@@ -14,9 +14,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+    <header>
+        <div class="text">↑進行方向</div>
+    </header>
     <div class="main">
         <div class="bus">
-            <% for (int i = 0; i < maxPassenger / 4; i++) { %>
+            <% for (int i = 1; i <= maxPassenger / 4; i++) { %>
                 <div class="row">
                     <%
                     	for (int j = 0; j < 4; j++) {
@@ -24,12 +27,15 @@
                     		boolean isReserved = Arrays.asList(reserved).contains(seatNo);
                     %>
                         <div class="box <%= isReserved ? "reserved": "none" %>">
-                            <%= alpha[j] %>
+                            <%= i + alpha[j] %>
                         </div>
                     <% } %>
-                    </div>
+                </div>
             <% } %>
         </div>
+    </div>
+    <div class="info">
+        <div id="seats"></div>
     </div>
 </body>
 <script src="js/reserveSeat.js"></script>
