@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.UserDao;
 import model.UserBean;
@@ -34,8 +33,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		ServletContext application = request.getServletContext();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
@@ -43,9 +40,9 @@ public class LoginServlet extends HttpServlet {
 		UserBean user = userDao.getUserByEmail(email);
 
 		if (user != null && user.getPassword().equals(password)) {
-			System.out.println(user);
-			session.setAttribute("user", user);
+			ServletContext application = request.getServletContext();
 			application.setAttribute("user", user);
+			System.out.println(user.getUserId());
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("");

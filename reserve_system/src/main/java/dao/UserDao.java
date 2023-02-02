@@ -54,6 +54,16 @@ public class UserDao extends CommonDao {
 		return this.findUser(userId) != null;
 	}
 
+	public UserBean getUserByUserId(int userId) {
+		List<UserBean> users = this.findAll();
+
+		for (UserBean user: users) {
+			if (user.getUserId() == userId) return user;
+		}
+
+		return null;
+	}
+
 	public UserBean getUserByEmail(String email) {
 		List<UserBean> users = this.findAll();
 
