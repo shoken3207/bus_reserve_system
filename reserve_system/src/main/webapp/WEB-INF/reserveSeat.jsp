@@ -3,9 +3,9 @@
 <%@ page import="model.BusBean, java.util.Arrays" %>
 <%
 	BusBean bus = (BusBean) session.getAttribute("bus");
-	String[] reserved = new String[]{"2a", "2b", "4c", "5c", "6d", "7a"};
+	String[] reserved = (String[]) session.getAttribute("reservedSeats");
 	String[] alpha = new String[]{"a", "b", "c", "d"};
-    int maxPassenger = 40;
+	int maxPassenger = 40;
 %>
 <!DOCTYPE html>
 <html>

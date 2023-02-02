@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,63 +8,69 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.BusBean;
+import model.SeatsBean;
 
 public class SeatsDao extends CommonDao {
 //	public SeatsDao() {
 //		this.seatsDao = this;
 //	}
 
-	public ArrayList<SeatsDao> findAll() {
-		ArrayList<SeatsDao> buses = new ArrayList<SeatsDao>();
+	public ArrayList<SeatsBean> findAll() {
+		ArrayList<SeatsBean> seats = new ArrayList<SeatsBean>();
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "SELECT * FROM timetable";
+			String sql = "SELECT * FROM seats";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
+				int userId = rs.getInt("userId");
 				int busId = rs.getInt("busId");
-				String start = rs.getString("start");
-				String end = rs.getString("end");
-				Date departure = rs.getDate("departure");
-				int maxPassenger = rs.getInt("maxPassenger");
-				int price = rs.getInt("price");
+				String seatId = rs.getString("seatId");
 
-//				BusBean bus = new BusBean(busId, start, end, departure, maxPassenger, price);
-//				buses.add(bus);
+				SeatsBean seat = new SeatsBean(userId, busId, seatId);
+				seats.add(seat);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return buses;
+		return seats;
 	}
 	
-	public BusBean findBusByBusId(int busId) {
-		List<SeatsDao> buses = this.findAll();
+	public SeatsBean findReserve(int userId, int busId, String seatId) {
+		List<SeatsBean> seats = this.findAll();
 		
-//		for (SeatsBean bus: buses) {
-//			if (bus.getBusId() == busId) return bus;
-//		}
+		for (SeatsBean seat: seats) {
+			if (seat.getUserId() == userId && seat.getBusId() == busId && seat.getSeatId().equals(seatId)) return seat;
+		}
 		
 		return null;
 	}
-	
-	public boolean isExistsBus(int busId) {
-		return this.findBusByBusId(busId) != null;
+
+	public String[] getReservedSeats(int busId) {
+		List<String> reservedSeats = new ArrayList<>();
+		List<SeatsBean> seats = this.findAll();
+		for (SeatsBean seat: seats) {
+			if (seat.getBusId() == busId) {
+				reservedSeats.add(seat.getSeatId());
+			}
+		}
+		return reservedSeats.toArray(new String[reservedSeats.size()]);
 	}
 
-	public void insert(SeatsDao[] buses) {
+	public boolean isExistsReserve(int userId, int busId, String seatId) {
+		return this.findReserve(userId, busId, seatId) != null;
+	}
+
+	public void insert(ArrayList<SeatsBean> seats) {
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			for (SeatsDao bus: buses) {
-				String sql = "INSERT INTO timetable(start, end, departure, maxPassenger, price) VALUES(?, ?, ?, ?, ?);";
+			for (SeatsBean seat: seats) {
+				String sql = "INSERT INTO seats VALUES(?, ?, ?);";
 				PreparedStatement ps = conn.prepareStatement(sql);
-//				ps.setString(1, bus.getStart());
-//				ps.setString(2, bus.getEnd());
-//				ps.setDate(3, bus.getDeparture());
-//				ps.setInt(4, bus.getMaxPassenger());
-//				ps.setInt(5, bus.getPrice());
+				ps.setInt(1, seat.getUserId());
+				ps.setInt(2, seat.getBusId());
+				ps.setString(3, seat.getSeatId());
 
 				ps.executeUpdate();
 			}

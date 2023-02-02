@@ -1,49 +1,49 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    user-select: none;
-    -webkit-user-select: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	user-select: none;
+	-webkit-user-select: none;
 }
 
 header {
-    margin: 0 0 1rem;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #faf;
+	margin: 0 0 1rem;
+	padding: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #faf;
 }
 
 .text {
-    font-size: 20px;
+	font-size: 20px;
 }
 
 .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .bus {
-    padding: 10px;
+	padding: 10px;
 	border: 1px solid #00f;
-    border-radius: 3px;
+	border-radius: 3px;
 }
 
 .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .box {
 	width: 50px;
 	height: 50px;
-    padding: 5px;
-    border: 1px solid #0003;
-    border-radius: 3px;
-    cursor: pointer;
+	padding: 5px;
+	border: 1px solid #0003;
+	border-radius: 3px;
+	cursor: pointer;
 }
 
 .box:nth-of-type(2) {
@@ -56,21 +56,22 @@ header {
 
 .reserved {
 	background-color: gray;	
+	cursor: default;
 }
 
 .info {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #submit {
 	margin-left: 1rem;
 	padding: 3px 10px;
-    border: 1px solid #ff0;
-    background-color: orange;
-    cursor: pointer;
+	border: 1px solid #ff0;
+	background-color: orange;
+	cursor: pointer;
 }
 
 #submit:hover {
