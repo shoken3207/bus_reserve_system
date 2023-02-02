@@ -4,42 +4,31 @@
 <!DOCTYPE html>
 
 <html>
-
 	<head>
-	
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css" >
-		
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/login_expand.css" >
 		<title>	TOP</title>
 	</head>
-	
 	<body>
-		
-		<header>
-		
-			<div class = "h1_div_out">
-				<div class = "h1_div_into">
-					<h1>ログイン画面</h1>
-				</div>
-			</div>
-			
-		</header>
-		
 		<main>
-		
-			<form  action="login" method="post">
-			  
-			  <input placeholder="E-mail" type="text" name="email"/>
-			  <input placeholder="Password" type="password" name="password"/>
-			  <input class = main_sub type="submit" value="ログイン">
-			  
-			</form>
+			<div class="form_div">
+				<div class = "h1_div_out">
+					<div class = "h1_div_into">
+						<h1>Ex<span class="under_ber">_</span>BUS</h1>
+					</div>
+				</div>
 
+				<form  action="login" method="post">
+					<p class="form_in_p">E-mail Address <span class="ast">*</span></p><br>
+					<input class="text_inp" placeholder="E-mail" type="text" name="email" required/><br><br>
+
+					<p class="form_in_p">Password <span class="ast">*</span></p><br>
+					<input class="text_inp" placeholder="Password" type="password" name="password" required/><br>
+
+					<input class="main_sub" type="submit" value="LOGIN">
+
+				</form>
+			</div>
 		</main>
-		
-		<footer></footer>
-		
-	
 	</body>
-	
 </html>
