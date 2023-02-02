@@ -35,6 +35,7 @@ public class ReserveSeatServlet extends HttpServlet {
 		String[] reservedSeats = seatsDao.getReservedSeats(busId);
 
 		HttpSession session = request.getSession();
+		session.setAttribute("busId", busId);
 		session.setAttribute("bus", bus);
 		session.setAttribute("reservedSeats", reservedSeats);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/reserveSeat.jsp");

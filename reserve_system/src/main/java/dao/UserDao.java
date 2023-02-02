@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.InsertUserBean;
 import model.UserBean;
 
 public class UserDao extends CommonDao {
@@ -38,6 +39,21 @@ public class UserDao extends CommonDao {
 		}
 
 		return users;
+	}
+
+	public void insert(InsertUserBean user) {
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "INSERT INTO user(password, email, name, phone) VALUES(?, ?, ?, ?);";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getPassword());
+			ps.setString(2, user.getEmail());
+			ps.setString(3, user.getName());
+			ps.setInt(4, user.getPhone());
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public UserBean findUser(int userId) {

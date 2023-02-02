@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ReserveDao;
 import dao.SeatsDao;
+import model.InsertReserveBean;
 import model.SeatsBean;
 import model.UserBean;
 
@@ -32,6 +34,10 @@ public class ReserveSeatCompleteServlet extends HttpServlet {
 		ServletContext application = request.getServletContext();
 		UserBean user = (UserBean) application.getAttribute("user");
 		int userId = user != null ? user.getUserId(): 1;
+
+		InsertReserveBean insertReserveBean = new InsertReserveBean(userId, busId, selectedSeats.length);
+		ReserveDao reserveDao = new ReserveDao();
+		reserveDao.insert(insertReserveBean);
 
 		ArrayList<SeatsBean> seatsList = new ArrayList<SeatsBean>();
 		for (String seat: selectedSeats) {

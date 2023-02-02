@@ -26,7 +26,7 @@
                         <td class="col">
                             <p>お名前</p>
                         </td>
-                        <td class="col">
+                        <td class="col val">
                             <p><%= user.getName() %></p>
                         </td>
                     </tr>
@@ -34,7 +34,7 @@
                         <td class="col">
                             <p>出発場所</p>
                         </td>
-                        <td class="col">
+                        <td class="col val">
                             <p><%= bus.getStart() %></p>
                         </td>
                     </tr>
@@ -42,7 +42,7 @@
                         <td class="col">
                             <p>到着場所</p>
                         </td>
-                        <td class="col">
+                        <td class="col val">
                             <p><%= bus.getEnd() %></p>
                         </td>
                     </tr>
@@ -50,7 +50,7 @@
                         <td class="col">
                             <p>出発日</p>
                         </td>
-                        <td class="col">
+                        <td class="col val">
                             <p><%= bus.getDeparture() %></p>
                         </td>
                     </tr>
@@ -58,7 +58,7 @@
                         <td class="col">
                             <p>人数</p>
                         </td>
-                        <td class="col">
+                        <td class="col val">
                             <p><%= passenger %>名様</p>
                         </td>
                     </tr>
@@ -66,7 +66,7 @@
                         <td class="col">
                             <p>料金</p>
                         </td>
-                        <td class="col">
+                        <td class="col val">
                             <p><%= bus.getPrice() * passenger %>円</p>
                         </td>
                     </tr>
