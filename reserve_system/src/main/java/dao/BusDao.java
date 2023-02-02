@@ -17,11 +17,11 @@ public class BusDao extends CommonDao {
 		this.busDao = this;
 	}
 
-	public List<BusBean> findAll() {
-		List<BusBean> buses = new ArrayList<BusBean>();
+	public ArrayList<BusBean> findAll() {
+		ArrayList<BusBean> buses = new ArrayList<BusBean>();
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "SELECT * FROM user";
+			String sql = "SELECT * FROM timetable";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
@@ -43,7 +43,7 @@ public class BusDao extends CommonDao {
 		return buses;
 	}
 	
-	public BusBean findTimetable(int busId) {
+	public BusBean findBusByBusId(int busId) {
 		List<BusBean> buses = this.findAll();
 		
 		for (BusBean bus: buses) {
@@ -54,7 +54,23 @@ public class BusDao extends CommonDao {
 	}
 	
 	public boolean isExistsBus(int busId) {
-		return this.findTimetable(busId) != null;
+		return this.findBusByBusId(busId) != null;
+	}
+
+	public void insert(InsertBusBean bus) {
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "INSERT INTO timetable(start, end, departure, maxPassenger, price) VALUES(?, ?, ?, ?, ?);";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, bus.getStart());
+			ps.setString(2, bus.getEnd());
+			ps.setDate(3, bus.getDeparture());
+			ps.setInt(4, bus.getMaxPassenger());
+			ps.setInt(5, bus.getPrice());
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void insert(InsertBusBean[] buses) {
