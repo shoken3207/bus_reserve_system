@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.InsertReserveBean;
 import model.ReserveBean;
 
 public class ReserveDao extends CommonDao {
@@ -31,7 +30,6 @@ public class ReserveDao extends CommonDao {
 				int seats = rs.getInt("seats");
 
 				ReserveBean reserve = new ReserveBean(reserveId, userId, busId, seats);
-				System.out.println("aaa");
 				reserves.add(reserve);
 			}
 		} catch (SQLException e) {
@@ -55,7 +53,7 @@ public class ReserveDao extends CommonDao {
 		return this.findReserve(id) != null;
 	}
 
-	public void insert(InsertReserveBean reserve) {
+	public void insert(ReserveBean reserve) {
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 			String sql = "INSERT INTO reserve(userId, busId, seats) VALUES(?, ?, ?);";
 			PreparedStatement ps = conn.prepareStatement(sql);

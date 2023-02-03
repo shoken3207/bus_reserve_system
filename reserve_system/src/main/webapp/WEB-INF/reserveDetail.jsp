@@ -1,24 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.BusBean, model.UserBean"%>
+<%@ page import="model.BusBean, model.UserBean, model.ReserveBean"%>
 <%
-	String reserveSeat = (String) session.getAttribute("reserveSeat");
-	BusBean bus = (BusBean) session.getAttribute("bus");
+	BusBean bus = (BusBean) request.getAttribute("bus");
 	UserBean user = (UserBean) application.getAttribute("user");
-	int passenger = (int) session.getAttribute("passenger");
+	ReserveBean reserve = (ReserveBean) request.getAttribute("reserve");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/reserveSeatConfirm.css">
-<title>内容確認</title>
+<title>予約確認</title>
 </head>
 <body>
     <div class="body">
         <div class="container">
             <div class="confirmText">
-                <p>以下の内容で予約を行いますか？</p>
+                <p>予約確認</p>
             </div>
             <div class="main">
                 <table>
@@ -59,7 +58,7 @@
                             <p>人数</p>
                         </td>
                         <td class="col val">
-                            <p><%= passenger %>名様</p>
+                            <p><%= reserve.getSeats() %>名様</p>
                         </td>
                     </tr>
                     <tr class="row">
@@ -67,14 +66,13 @@
                             <p>料金</p>
                         </td>
                         <td class="col val">
-                            <p><%= bus.getPrice() * passenger %>円</p>
+                            <p><%= bus.getPrice() * reserve.getSeats() %>円</p>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="buttons">
-                <a href="javascript:void(0)" class="button cancel" onclick="history.back()">キャンセル</a>
-                <a href="ReserveSeatCompleteServlet?busId=<%= bus.getBusId() %>&reserveSeat=<%= reserveSeat %>" class="button confirm">確定</a>
+                
             </div>
         </div>
     </div>

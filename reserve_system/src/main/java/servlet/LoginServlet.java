@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 		if (user != null && user.getPassword().equals(password)) {
 			ServletContext application = request.getServletContext();
 			application.setAttribute("user", user);
-			System.out.println(user.getUserId());
+			System.out.println("login: " + user.getUserId());
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("");

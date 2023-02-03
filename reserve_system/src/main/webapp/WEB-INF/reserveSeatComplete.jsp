@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	予約が完了しました。
+	<p>予約が完了しました。</p>
+	<a href="ReserveListServlet">予約一覧へ</a>
 </body>
 </html>

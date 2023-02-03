@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.ReserveDao;
 import dao.SeatsDao;
-import model.InsertReserveBean;
+import model.ReserveBean;
 import model.SeatsBean;
 import model.UserBean;
 
@@ -35,10 +35,6 @@ public class ReserveSeatCompleteServlet extends HttpServlet {
 		UserBean user = (UserBean) application.getAttribute("user");
 		int userId = user != null ? user.getUserId(): 1;
 
-		InsertReserveBean insertReserveBean = new InsertReserveBean(userId, busId, selectedSeats.length);
-		ReserveDao reserveDao = new ReserveDao();
-		reserveDao.insert(insertReserveBean);
-
 		ArrayList<SeatsBean> seatsList = new ArrayList<SeatsBean>();
 		for (String seat: selectedSeats) {
 			SeatsBean seatBean = new SeatsBean(userId, busId, seat);
@@ -46,7 +42,15 @@ public class ReserveSeatCompleteServlet extends HttpServlet {
 		}
 		
 		SeatsDao seatsDao = new SeatsDao();
-		seatsDao.insert(seatsList);
+		boolean isValid = seatsDao.insert(seatsList);
+
+		if (isValid) {
+			ReserveBean insertReserveBean = new ReserveBean(userId, busId, selectedSeats.length);
+			ReserveDao reserveDao = new ReserveDao();
+			reserveDao.insert(insertReserveBean);
+		} else {
+			/* TODO error */
+		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/reserveSeatComplete.jsp");
 		dispatcher.forward(request, response);

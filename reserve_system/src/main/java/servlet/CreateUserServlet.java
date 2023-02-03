@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDao;
-import model.InsertUserBean;
+import model.UserBean;
 
 /**
  * Servlet implementation class CreateUserServlet
@@ -35,7 +35,7 @@ public class CreateUserServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		int phone = Integer.parseInt(request.getParameter("phone"));
 
-		InsertUserBean user = new InsertUserBean(password, email, name, phone);
+		UserBean user = new UserBean(password, email, name, phone);
 		UserDao userDao = new UserDao();
 		userDao.insert(user);
 

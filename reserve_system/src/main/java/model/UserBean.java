@@ -16,6 +16,13 @@ public class UserBean implements Serializable {
 		this.setPhone(phone);
 	}
 
+	public UserBean(String password, String email, String name, int phone) {
+		this.setPassword(password);
+		this.setEmail(email);
+		this.setName(name);
+		this.setPhone(phone);
+	}
+
 	public int getUserId() {
 		return userId;
 	}
