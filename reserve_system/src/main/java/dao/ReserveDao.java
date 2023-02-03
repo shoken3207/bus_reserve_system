@@ -68,4 +68,15 @@ public class ReserveDao extends CommonDao {
 			e.printStackTrace();
 		}
 	}
+
+	public List<ReserveBean> findAllReserveByUserId(int userId) {
+		List<ReserveBean> userReserveList = new ArrayList<ReserveBean>();
+
+		List<ReserveBean> reserves = this.findAll();
+		for (ReserveBean reserve: reserves) {
+			if (reserve.getUserId() == userId) userReserveList.add(reserve);
+		}
+
+		return userReserveList;
+	}
 }

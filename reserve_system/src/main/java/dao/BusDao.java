@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import model.BusBean;
@@ -51,6 +52,17 @@ public class BusDao extends CommonDao {
 		}
 		
 		return null;
+	}
+
+	public HashMap<Integer, BusBean> getBusBeans(int[] busIds) {
+		HashMap<Integer, BusBean> map = new HashMap<>();
+
+		for (int busId: busIds) {
+			BusBean bus = this.findBusByBusId(busId);
+			map.put(busId, bus);
+		}
+
+		return map;
 	}
 	
 	public boolean isExistsBus(int busId) {
