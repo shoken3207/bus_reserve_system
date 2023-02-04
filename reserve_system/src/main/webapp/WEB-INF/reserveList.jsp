@@ -28,6 +28,7 @@
 				<th>人数</th>
 				<th>金額</th>
 				<th>編集</th>
+				<th>削除</th>
 			</tr>
 			<%
 				int i = 1;
@@ -36,12 +37,13 @@
 			%>
 				<tr>
 					<td><%= i %></td>
-					<td><%=bus.getStart()%></td>
-					<td><%=bus.getEnd()%></td>
-					<td><%=bus.getDeparture()%></td>
-					<td><%=reserve.getSeats()%></td>
-					<td><%=String.format("%,d", bus.getPrice() * reserve.getSeats())%></td>
-					<td><a href="ReserveEditServlet?reserveId=<%=reserve.getReserveId()%>">編集</a>
+					<td><%= bus.getStart() %></td>
+					<td><%= bus.getEnd() %></td>
+					<td><%= bus.getDeparture() %></td>
+					<td><%= reserve.getSeats() %></td>
+					<td><%= String.format("%,d", bus.getPrice() * reserve.getSeats()) %></td>
+					<td><a href="ReserveEditServlet?reserveId=<%= reserve.getReserveId() %>">編集</a></td>
+					<td><a href="" class="remove">削除</td>
 				</tr>
 			<% 
 					i++;

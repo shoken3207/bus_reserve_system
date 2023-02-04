@@ -3,7 +3,7 @@
 <%@ page import="model.BusBean, model.UserBean, model.ReserveBean"%>
 <%
 	BusBean bus = (BusBean) request.getAttribute("bus");
-	UserBean user = (UserBean) application.getAttribute("user");
+	UserBean user = (UserBean) session.getAttribute("user");
 	ReserveBean reserve = (ReserveBean) request.getAttribute("reserve");
 %>
 <!DOCTYPE html>

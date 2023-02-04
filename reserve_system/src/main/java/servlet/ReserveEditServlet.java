@@ -3,12 +3,12 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.BusDao;
 import dao.ReserveDao;
@@ -28,8 +28,8 @@ public class ReserveEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext application = request.getServletContext();
-		UserBean user = (UserBean) application.getAttribute("user");
+		HttpSession session = request.getSession();
+		UserBean user = (UserBean) session.getAttribute("user");
 
 		ReserveDao reserveDao = new ReserveDao();
 		BusDao busDao = new BusDao();
@@ -40,7 +40,7 @@ public class ReserveEditServlet extends HttpServlet {
 		if (user == null) {
 			UserDao userDao = new UserDao();
 			user = userDao.getUserByUserId(1);
-			application.setAttribute("user", user);
+			session.setAttribute("user", user);
 		} else {
 			if (user.getUserId() != reserve.getUserId()) {
 				/* TODO error */

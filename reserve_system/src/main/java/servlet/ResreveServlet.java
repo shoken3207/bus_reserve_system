@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.BusDao;
 import model.BusBean;
@@ -31,10 +30,9 @@ public class ResreveServlet extends HttpServlet {
 		String[] startList = buses.stream().map(e -> e.getStart()).distinct().toArray(String[]::new);
 		String[] endList = buses.stream().map(e -> e.getEnd()).distinct().toArray(String[]::new);
 
-		HttpSession session = request.getSession();
-		session.setAttribute("busList", buses);
-		session.setAttribute("startList", startList);
-		session.setAttribute("endList", endList);
+		request.setAttribute("busList", buses);
+		request.setAttribute("startList", startList);
+		request.setAttribute("endList", endList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/reserveSample.jsp");
 		dispatcher.forward(request, response);
 	}

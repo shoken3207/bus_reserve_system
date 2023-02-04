@@ -4,7 +4,7 @@
 <%
 	String reserveSeat = (String) session.getAttribute("reserveSeat");
 	BusBean bus = (BusBean) session.getAttribute("bus");
-	UserBean user = (UserBean) application.getAttribute("user");
+	UserBean user = (UserBean) session.getAttribute("user");
 	int passenger = (int) session.getAttribute("passenger");
 %>
 <!DOCTYPE html>
