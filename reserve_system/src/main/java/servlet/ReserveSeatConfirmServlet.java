@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,12 +38,11 @@ public class ReserveSeatConfirmServlet extends HttpServlet {
 		session.setAttribute("passenger", passenger);
 		session.setAttribute("reserveSeat", selectedSeats);
 
-		ServletContext application = request.getServletContext();
-		UserBean user = (UserBean) application.getAttribute("user");
+		UserBean user = (UserBean) session.getAttribute("user");
 		if (user == null) {
 			UserDao userDao = new UserDao();
 			user = userDao.getUserByUserId(1);
-			application.setAttribute("user", user);
+			session.setAttribute("user", user);
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/reserveSeatConfirm.jsp");

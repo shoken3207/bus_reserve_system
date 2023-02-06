@@ -3,12 +3,12 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDao;
 import model.UserBean;
@@ -39,14 +39,18 @@ public class LoginServlet extends HttpServlet {
 		UserDao userDao = new UserDao();
 		UserBean user = userDao.getUserByEmail(email);
 
+		String forwardPath = "";
+
 		if (user != null && user.getPassword().equals(password)) {
-			ServletContext application = request.getServletContext();
-			application.setAttribute("user", user);
-			System.out.println(user.getUserId());
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			forwardPath = "loginCompleteSample.jsp";
+			System.out.println("login: " + user.getUserId());
+		} else {
+			forwardPath = "loginSample.jsp";
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
 		dispatcher.forward(request, response);
 	}
-
 }

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.BusDao;
-import model.InsertBusBean;
+import model.BusBean;
 
 /**
  * Servlet implementation class UploadServlet
@@ -42,7 +42,7 @@ public class UploadServlet extends HttpServlet {
 		String result;
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			InsertBusBean[] buses = mapper.readValue(data, InsertBusBean[].class);
+			BusBean[] buses = mapper.readValue(data, BusBean[].class);
 			BusDao busDao = new BusDao();
 			busDao.insert(buses);
 			result = "insert completed!";
