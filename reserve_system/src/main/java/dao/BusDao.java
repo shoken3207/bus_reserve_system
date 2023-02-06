@@ -53,11 +53,20 @@ public class BusDao extends CommonDao {
 		return null;
 	}
 
+	public BusBean findBusByBusId(int busId, List<BusBean> buses) {
+		for (BusBean bus: buses) {
+			if (bus.getBusId() == busId) return bus;
+		}
+
+		return null;
+	}
+
 	public HashMap<Integer, BusBean> getBusBeans(int[] busIds) {
 		HashMap<Integer, BusBean> map = new HashMap<>();
+		List<BusBean> buses = this.findAll();
 
 		for (int busId: busIds) {
-			BusBean bus = this.findBusByBusId(busId);
+			BusBean bus = this.findBusByBusId(busId, buses);
 			map.put(busId, bus);
 		}
 
