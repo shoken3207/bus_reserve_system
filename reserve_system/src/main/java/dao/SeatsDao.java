@@ -11,9 +11,9 @@ import java.util.List;
 import model.SeatsBean;
 
 public class SeatsDao extends CommonDao {
-	public SeatsDao() {
-		this.seatsDao = this;
-	}
+//	public SeatsDao() {
+//		this.seatsDao = this;
+//	}
 
 	public ArrayList<SeatsBean> findAll() {
 		ArrayList<SeatsBean> seats = new ArrayList<SeatsBean>();
@@ -37,7 +37,7 @@ public class SeatsDao extends CommonDao {
 
 		return seats;
 	}
-
+	
 	public SeatsBean findReserve(int userId, int busId, String seatId) {
 		List<SeatsBean> seats = this.findAll();
 		

@@ -14,7 +14,6 @@ public class CommonDao {
 	
 	protected UserDao userDao;
 	protected BusDao  busDao;
-	protected SeatsDao seatsDao;
 	protected ReserveDao reserveDao;
 
 	public void delete(int id, String table) {
