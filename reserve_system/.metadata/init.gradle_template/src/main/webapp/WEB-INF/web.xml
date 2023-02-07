@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/index.html
+						http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+	
+	<!--
+	===============================================================================================
+	Servlet フィルター定義
+	===============================================================================================
+	以下のフィルターが設定済みですが、サンプルの実行に必須なのは 2 つだけです。
+	他は、すべてセキュリティ関連のフィルターでコメントアウトしても動作します。
+	
+		Tomcat 公式 RemoteIpFilter		
+		Tomcat 公式 SecurityFilter		
+		Tomcat 公式 CorsFilter			
+		Tomcat 公式 ShiroFilter			ログイン画面を使用する場合は必要
+		ローカル AutoCsrfFilter			
+		ローカル AutoTransactionFilter	[必須]
+		ローカル AutoFlashFilter		[必須]
+	===============================================================================================
+	-->
+	
+	<!--
+	Tomcat 公式フィルター: リバースプロキシのヘッダ属性を引き継いて isSecure などで正しく判定できるようにする
+	https://tomcat.apache.org/tomcat-9.0-doc/config/filter.html#HTTP_Header_Security_Filter
+	-->
+	<filter>
+		<filter-name>RemoteIpFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.RemoteIpFilter</filter-class>
+		<init-param>
+			<param-name>remoteIpHeader</param-name>
+			<param-value>x-forwarded-for</param-value>
+		</init-param>
+		<init-param>
+			<param-name>protocolHeader</param-name>
+			<param-value>x-forwarded-proto</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>RemoteIpFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+   
+	<!--
+	Tomcat 公式フィルター: レスポンスセキュリティヘッダーのセット
+	https://tomcat.apache.org/tomcat-9.0-doc/config/filter.html#HTTP_Header_Security_Filter
+	-->
+	<filter>
+		<filter-name>SecurityFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SecurityFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 
+	Tomcat 公式フィルター: CORS フィルター
+	https://tomcat.apache.org/tomcat-9.0-doc/config/filter.html#CORS_Filter
+	-->
+	<filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--
+	自動 CSRF フィルター
+	ログインフォーム post もチェックするため ShiroFilter より先
+	-->
+	<filter>
+		<filter-name>AutoCsrfFilter</filter-name>
+		<filter-class>jp.example.filter.AutoCsrfFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AutoCsrfFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher><!-- html リクエスト時のトークン埋め込み -->
+		<dispatcher>FORWARD</dispatcher><!--  jsp フォワード時のトークン埋め込み -->
+	</filter-mapping>
+
+	<!-- 
+	Apache Shiro ログイン認証フィルター (設定は /WEB-INF/shiro.ini)
+	login.html と設定ファイルのみで認証機構を実現
+	https://shiro.apache.org/webapp-tutorial.html
+	https://shiro.apache.org/web.html
+	-->
+	<filter>
+		<filter-name>ShiroFilter</filter-name>
+		<filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ShiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+	</listener>
+
+	<!--
+	自動トランザクションフィルター
+	例外でトランザクション制御した後、再スローしない (上位に例外を伝播しない)
+	-->
+	<filter>
+		<filter-name>AutoTransactionFilter</filter-name>
+		<filter-class>jp.example.filter.AutoTransactionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AutoTransactionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--
+	自動フラッシュと例外ハンドリングを行うフィルター
+	このフィルター以降で追加されたリクエスト属性のみを自動フラッシュするため、できるだけ最後に定義
+	例外ハンドリングして、上位フィルターにロールバックなどを任せるため再スローする (上位に例外を伝播する) 
+	-->
+	<filter>
+		<filter-name>AutoFlashFilter</filter-name>
+		<filter-class>jp.example.filter.AutoFlashFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AutoFlashFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!--
+	===============================================================================================
+	Servlet 全般設定
+	===============================================================================================
+	-->
+	
+	<!-- エンコーディング: post リクエスト getParameter -->
+	<request-character-encoding>UTF-8</request-character-encoding>
+	
+	<!-- エンコーディング: AJAX レスポンス -->
+	<response-character-encoding>UTF-8</response-character-encoding>
+
+	<!-- 初回アクセス時に URL へ jsessionid が追加されるのを無効化 -->
+	<session-config>
+		<tracking-mode>COOKIE</tracking-mode>
+		<session-timeout>30</session-timeout><!-- 単位:分 (デフォルト 30) -->
+	</session-config>
+	
+	<!-- JSP 共通設定 (文字エンコーディング、共通ヘッダ) -->
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<url-pattern>*.html</url-pattern><!-- login.html も JSP 構文を使用可能にする -->
+			<page-encoding>UTF-8</page-encoding>
+			<include-prelude>/WEB-INF/jsp/taglib.jspf</include-prelude>
+			<trim-directive-whitespaces>true</trim-directive-whitespaces>
+		</jsp-property-group>
+	</jsp-config>
+	
+</web-app>
