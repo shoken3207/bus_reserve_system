@@ -11,10 +11,6 @@ import java.util.List;
 import model.UserBean;
 
 public class UserDao extends CommonDao {
-	public UserDao() {
-		this.userDao = this;
-	}
-
 	public List<UserBean> findAll() {
 		List<UserBean> users = new ArrayList<UserBean>();
 
@@ -28,7 +24,7 @@ public class UserDao extends CommonDao {
 				String password = rs.getString("password");
 				String email = rs.getString("email");
 				String name = rs.getString("name");
-				int phone = rs.getInt("phone");
+				String phone = rs.getString("phone");
 
 				UserBean user = new UserBean(userId, password, email, name, phone);
 				users.add(user);
@@ -47,7 +43,7 @@ public class UserDao extends CommonDao {
 			ps.setString(1, user.getPassword());
 			ps.setString(2, user.getEmail());
 			ps.setString(3, user.getName());
-			ps.setInt(4, user.getPhone());
+			ps.setString(4, user.getPhone());
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -87,5 +83,20 @@ public class UserDao extends CommonDao {
 		}
 
 		return null;
+	}
+
+	@Override
+	public void delete(int id) {
+		if (!this.isExistsUser(id)) return;
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "DETELE FROM user WHERE userId = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

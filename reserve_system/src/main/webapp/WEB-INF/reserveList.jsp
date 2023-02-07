@@ -12,7 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/reserveList.css">
-	<title>Document</title>
+	<title>予約一覧</title>
 </head>
 <body>
 	<div class="title">
@@ -43,7 +43,7 @@
 					<td><%= reserve.getSeats() %></td>
 					<td><%= String.format("%,d", bus.getPrice() * reserve.getSeats()) %></td>
 					<td><a href="ReserveEditServlet?reserveId=<%= reserve.getReserveId() %>">編集</a></td>
-					<td><a href="" class="remove">削除</td>
+					<td><a href="ReserveDeleteServlet?reserveId=<%= reserve.getReserveId() %>" class="remove">削除</td>
 				</tr>
 			<% 
 					i++;

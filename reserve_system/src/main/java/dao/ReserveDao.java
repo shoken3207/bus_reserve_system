@@ -11,10 +11,6 @@ import java.util.List;
 import model.ReserveBean;
 
 public class ReserveDao extends CommonDao {
-	public ReserveDao() {
-		this.reserveDao = this;
-	}
-
 	public List<ReserveBean> findAll() {
 		List<ReserveBean> reserves = new ArrayList<ReserveBean>();
 
@@ -76,5 +72,20 @@ public class ReserveDao extends CommonDao {
 		}
 
 		return userReserveList;
+	}
+
+	@Override
+	public void delete(int id) {
+		if (!this.isExistsReserve(id)) return;
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "DETELE FROM reserve WHERE reserveId = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

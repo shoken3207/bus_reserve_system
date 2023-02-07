@@ -13,10 +13,6 @@ import java.util.List;
 import model.BusBean;
 
 public class BusDao extends CommonDao {
-	public BusDao() {
-		this.busDao = this;
-	}
-
 	public ArrayList<BusBean> findAll() {
 		ArrayList<BusBean> buses = new ArrayList<BusBean>();
 
@@ -106,6 +102,21 @@ public class BusDao extends CommonDao {
 
 				ps.executeUpdate();
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void delete(int id) {
+		if (!this.isExistsBus(id)) return;
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "DETELE FROM bus WHERE busId = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

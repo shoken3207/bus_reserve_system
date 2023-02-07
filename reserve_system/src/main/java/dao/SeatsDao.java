@@ -11,10 +11,6 @@ import java.util.List;
 import model.SeatsBean;
 
 public class SeatsDao extends CommonDao {
-//	public SeatsDao() {
-//		this.seatsDao = this;
-//	}
-
 	public ArrayList<SeatsBean> findAll() {
 		ArrayList<SeatsBean> seats = new ArrayList<SeatsBean>();
 
@@ -79,5 +75,21 @@ public class SeatsDao extends CommonDao {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public void delete(int id) {
+		ReserveDao reserveDao = new ReserveDao();
+		if (!reserveDao.isExistsReserve(id)) return;
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "DETELE FROM reserve WHERE reserveId = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

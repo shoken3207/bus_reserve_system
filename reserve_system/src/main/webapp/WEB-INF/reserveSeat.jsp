@@ -5,7 +5,7 @@
 	BusBean bus = (BusBean) session.getAttribute("bus");
 	String[] reserved = (String[]) session.getAttribute("reservedSeats");
 	String[] alpha = new String[]{"a", "b", "c", "d"};
-	int maxPassenger = 40;
+	int maxPassenger = bus.getMaxPassenger();
 %>
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@
                     		boolean isReserved = Arrays.asList(reserved).contains(seatNo);
                     %>
                         <div class="box <%= isReserved ? "reserved": "none" %>">
-                            <%= i + alpha[j] %>
+                            <%= seatNo %>
                         </div>
                     <% } %>
                 </div>

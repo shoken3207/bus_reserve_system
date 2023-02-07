@@ -33,7 +33,7 @@ public class CreateUserServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		String name = request.getParameter("name");
-		int phone = Integer.parseInt(request.getParameter("phone"));
+		String phone = request.getParameter("phone");
 
 		UserBean user = new UserBean(password, email, name, phone);
 		UserDao userDao = new UserDao();
