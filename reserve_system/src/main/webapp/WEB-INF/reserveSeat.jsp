@@ -38,7 +38,7 @@
     <div class="info">
         <div id="seats"></div><br>
         <button onclick="reset()">リセット</button>
-        <form action="ReserveSeatServlet" method="POST" name="seatForm">
+        <form action="ReserveSeatConfirmServlet" method="POST" name="seatForm">
             <input type="hidden" name="selectedSeats">
             <input type="submit" id="submit" value="確定">
         </form>

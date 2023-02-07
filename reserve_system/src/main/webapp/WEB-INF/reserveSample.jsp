@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String[] startList = (String[]) session.getAttribute("startList");
-	String[] endList   = (String[]) session.getAttribute("endList");
+	String[] startList = (String[]) request.getAttribute("startList");
+	String[] endList   = (String[]) request.getAttribute("endList");
 %>
 <!DOCTYPE html>
 <html>

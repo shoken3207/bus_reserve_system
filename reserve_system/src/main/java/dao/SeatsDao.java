@@ -63,7 +63,7 @@ public class SeatsDao extends CommonDao {
 		return this.findReserve(userId, busId, seatId) != null;
 	}
 
-	public void insert(ArrayList<SeatsBean> seats) {
+	public boolean insert(ArrayList<SeatsBean> seats) {
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 			for (SeatsBean seat: seats) {
 				String sql = "INSERT INTO seats VALUES(?, ?, ?);";
@@ -76,6 +76,8 @@ public class SeatsDao extends CommonDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 }
