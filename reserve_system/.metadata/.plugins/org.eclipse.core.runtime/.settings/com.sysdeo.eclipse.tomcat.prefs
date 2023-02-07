@@ -1,0 +1,7 @@
+tomcatDir=C:/Users/st20214101/Desktop/pleiades-2022-09-java-win-64bit-jre_20220914/tomcat/9
+eclipse.preferences.version=1
+fixTomcatHomeBug=fixed
+contextsDir=C:/Users/st20214101/Desktop/pleiades-2022-09-java-win-64bit-jre_20220914/tomcat/9/conf/Catalina/localhost
+tomcatVersion=tomcatV9
+computeSourcePath=true
+tomcatConfigFile=C:/Users/st20214101/Desktop/pleiades-2022-09-java-win-64bit-jre_20220914/tomcat/9/conf/server.xml
