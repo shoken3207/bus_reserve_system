@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("loginSample.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("loginPage.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -44,10 +44,11 @@ public class LoginServlet extends HttpServlet {
 		if (user != null && user.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			forwardPath = "loginCompleteSample.jsp";
+			forwardPath = "mypage.jsp";
 			System.out.println("login: " + user.getUserId());
 		} else {
-			forwardPath = "loginSample.jsp";
+			forwardPath = "loginPage.jsp";
+			request.setAttribute("email", email);
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
