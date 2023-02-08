@@ -94,4 +94,19 @@ public class ReserveDao extends CommonDao {
 			e.printStackTrace();
 		}
 	}
+
+	public void update(int id, int seats) {
+		if (!this.isExistsReserve(id)) return;
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "UPDATE reserve SET seats = ? WHERE reserveId = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.setInt(2, seats);
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

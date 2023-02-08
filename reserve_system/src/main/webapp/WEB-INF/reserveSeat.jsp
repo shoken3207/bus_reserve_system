@@ -4,10 +4,21 @@
 <%
 	BusBean bus = (BusBean) session.getAttribute("bus");
 	String[] reserved = (String[]) session.getAttribute("reservedSeats");
-	boolean isEdit = ((String) request.getAttribute("isEdit")).equals("isEdit");
-	System.out.println(isEdit);
 	String[] alpha = new String[]{"a", "b", "c", "d"};
 	int maxPassenger = bus.getMaxPassenger();
+	
+	String edit = (String) request.getParameter("isEdit");
+	boolean isEdit = false;
+	if (edit != null) {
+		isEdit = edit.equals("true");
+	}
+	String reserveSeat = (String) request.getParameter("reservedSeats");
+	String[] reservedSeats = null;
+	if (isEdit) {
+		reservedSeats = reserveSeat.split(",");
+	}
+
+	String actionPath = isEdit ? "EditSeatConfirmServlet": "ReserveSeatConfirmServlet";
 %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +26,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/reserveSeat.css">
 <link rel="icon" href="img/ico.png">
-<title>Insert title here</title>
+<title>座席選択</title>
 </head>
 <body>
     <header>
@@ -28,9 +39,13 @@
                     <%
                     	for (int j = 0; j < 4; j++) {
                     		String seatNo = i + alpha[j];
-                    		boolean isReserved = Arrays.asList(reserved).contains(seatNo);
+                    		boolean isSelected = false;
+                    		if (isEdit) {
+                    			isSelected = Arrays.asList(reservedSeats).contains(seatNo);
+                    		}
+                    		boolean isReserved = !isSelected && Arrays.asList(reserved).contains(seatNo);
                     %>
-                        <div class="box <%= isReserved ? "reserved": "none" %>">
+                        <div class="box <%= isSelected ? "selected" : isReserved ? "reserved" : "none" %>">
                             <%= seatNo %>
                         </div>
                     <% } %>
@@ -41,11 +56,17 @@
     <div class="info">
         <div id="seats"></div><br>
         <button onclick="reset()">リセット</button>
-        <form action="ReserveSeatConfirmServlet" method="POST" name="seatForm">
+        <form action="<%= actionPath %>" method="POST" name="seatForm">
+        	<input type="hidden" name="isEdit" value="<%= isEdit %>">
             <input type="hidden" name="selectedSeats">
             <input type="submit" id="submit" value="確定">
         </form>
     </div>
 </body>
+
+<script>
+	let counter = <%= reservedSeats != null ? reservedSeats.length: 0 %>;
+	let selectedList = counter == 0 ? []: '<%= reserveSeat %>'.split(",");
+</script>
 <script src="js/reserveSeat.js"></script>
 </html>

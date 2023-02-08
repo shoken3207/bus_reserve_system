@@ -52,7 +52,6 @@ public class ReserveEditServlet extends HttpServlet {
 
 		BusBean bus = busDao.findBusByBusId(reserve.getBusId());
 
-		System.out.println(reservedSeats);
 		request.setAttribute("reservedSeats", String.join(",", reservedSeats));
 		request.setAttribute("reserve", reserve);
 		request.setAttribute("bus", bus);

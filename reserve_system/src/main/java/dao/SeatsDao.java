@@ -67,6 +67,15 @@ public class SeatsDao extends CommonDao {
 		return reservedSeats.toArray(new String[reservedSeats.size()]);
 	}
 
+	public int getReserveId(int userId, int busId, String seatId) {
+		List<SeatsBean> seats = this.findAll();
+		for (SeatsBean seat: seats) {
+			if (seat.getUserId() == userId && seat.getBusId() == busId && seat.getSeatId().equals(seatId)) return seat.getReserveId();
+		}
+
+		return 0;
+	}
+
 	public boolean isExistsReserve(int userId, int busId, String seatId) {
 		return this.findReserve(userId, busId, seatId) != null;
 	}
