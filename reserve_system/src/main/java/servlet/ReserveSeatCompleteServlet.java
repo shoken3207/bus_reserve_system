@@ -40,17 +40,13 @@ public class ReserveSeatCompleteServlet extends HttpServlet {
 			SeatsBean seatBean = new SeatsBean(userId, busId, seat);
 			seatsList.add(seatBean);
 		}
-		
-		SeatsDao seatsDao = new SeatsDao();
-		boolean isValid = seatsDao.insert(seatsList);
 
-		if (isValid) {
-			ReserveBean insertReserveBean = new ReserveBean(userId, busId, selectedSeats.length);
-			ReserveDao reserveDao = new ReserveDao();
-			reserveDao.insert(insertReserveBean);
-		} else {
-			/* TODO error */
-		}
+		ReserveBean insertReserveBean = new ReserveBean(userId, busId, selectedSeats.length);
+		ReserveDao reserveDao = new ReserveDao();
+		int reserveId = reserveDao.insert(insertReserveBean);
+
+		SeatsDao seatsDao = new SeatsDao();
+		seatsDao.insert(seatsList, reserveId);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/reserveSeatComplete.jsp");
 		dispatcher.forward(request, response);

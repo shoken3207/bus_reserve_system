@@ -4,6 +4,8 @@
 <%
 	BusBean bus = (BusBean) session.getAttribute("bus");
 	String[] reserved = (String[]) session.getAttribute("reservedSeats");
+	boolean isEdit = ((String) request.getAttribute("isEdit")).equals("isEdit");
+	System.out.println(isEdit);
 	String[] alpha = new String[]{"a", "b", "c", "d"};
 	int maxPassenger = bus.getMaxPassenger();
 %>

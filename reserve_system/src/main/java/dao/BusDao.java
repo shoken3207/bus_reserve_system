@@ -112,7 +112,7 @@ public class BusDao extends CommonDao {
 		if (!this.isExistsBus(id)) return;
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "DETELE FROM bus WHERE busId = ?";
+			String sql = "DELETE FROM bus WHERE busId = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 

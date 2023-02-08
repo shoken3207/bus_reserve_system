@@ -49,18 +49,24 @@ public class ReserveDao extends CommonDao {
 		return this.findReserve(id) != null;
 	}
 
-	public void insert(ReserveBean reserve) {
+	public int insert(ReserveBean reserve) {
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 			String sql = "INSERT INTO reserve(userId, busId, seats) VALUES(?, ?, ?);";
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+
 			ps.setInt(1, reserve.getUserId());
 			ps.setInt(2, reserve.getBusId());
 			ps.setInt(3, reserve.getSeats());
 
 			ps.executeUpdate();
+			ResultSet res = ps.getGeneratedKeys();
+			if(res.next()){
+				return res.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return 0;
 	}
 
 	public List<ReserveBean> findAllReserveByUserId(int userId) {
@@ -79,7 +85,7 @@ public class ReserveDao extends CommonDao {
 		if (!this.isExistsReserve(id)) return;
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "DETELE FROM reserve WHERE reserveId = ?";
+			String sql = "DELETE FROM reserve WHERE reserveId = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 
