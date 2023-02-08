@@ -3,6 +3,13 @@
 * {
 	font-family: "BIZ UDPゴシック","BIZ UDPGothic";
 	box-sizing:border-box;
+	float: none;
+	position: static;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
 }
 
 html {
@@ -29,7 +36,7 @@ body {
 
 /*外側要素　背景青*/
 .h1_div_out {
-    background-color: rgb(48, 207, 143);
+    background-color: rgb(50, 220, 220);
     text-align: center; /*div_int_02のテキストを中央揃えにする*/
     margin-bottom: 0;
     border:none;
@@ -76,6 +83,10 @@ body {
 	border: none;
 }
 
+.text_inp:hover {
+	background-color: rgb(255, 210, 128);
+}
+
 .ast {
 	color:crimson;
 }
@@ -95,5 +106,5 @@ body {
 }
 
 .main_sub:hover {
-  background: rgb(48, 207, 143);
+  background: rgb(50, 220, 220);
 }
