@@ -15,7 +15,7 @@
 		<meta charset="UTF-8">
 		<title>ログイン結果</title>
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" >
-		
+		<link rel="icon" href="img/ico.png">
 	</head>
 	
 	<body>
