@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" href="img/ico.png">
 </head>
 <body>
 	<p>予約が完了しました。</p>

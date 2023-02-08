@@ -12,6 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/reserveSeatConfirm.css">
+<link rel="icon" href="img/ico.png">
 <title>予約確認</title>
 </head>
 <body>

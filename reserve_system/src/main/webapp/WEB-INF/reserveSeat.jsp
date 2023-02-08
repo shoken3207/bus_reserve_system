@@ -14,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/reserveSeat.css">
+<link rel="icon" href="img/ico.png">
 <title>Insert title here</title>
 </head>
 <body>

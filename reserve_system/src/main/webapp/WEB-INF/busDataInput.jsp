@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/insert.css">
+<link rel="icon" href="img/ico.png">
 </head>
 <body>
 	<div class="error">
