@@ -7,16 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import model.BusBean;
-import model.InsertBusBean;
 
 public class BusDao extends CommonDao {
-	public BusDao() {
-		this.busDao = this;
-	}
-
 	public ArrayList<BusBean> findAll() {
 		ArrayList<BusBean> buses = new ArrayList<BusBean>();
 
@@ -52,12 +48,32 @@ public class BusDao extends CommonDao {
 		
 		return null;
 	}
+
+	public BusBean findBusByBusId(int busId, List<BusBean> buses) {
+		for (BusBean bus: buses) {
+			if (bus.getBusId() == busId) return bus;
+		}
+
+		return null;
+	}
+
+	public HashMap<Integer, BusBean> getBusBeans(int[] busIds) {
+		HashMap<Integer, BusBean> map = new HashMap<>();
+		List<BusBean> buses = this.findAll();
+
+		for (int busId: busIds) {
+			BusBean bus = this.findBusByBusId(busId, buses);
+			map.put(busId, bus);
+		}
+
+		return map;
+	}
 	
 	public boolean isExistsBus(int busId) {
 		return this.findBusByBusId(busId) != null;
 	}
 
-	public void insert(InsertBusBean bus) {
+	public void insert(BusBean bus) {
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 			String sql = "INSERT INTO timetable(start, end, departure, maxPassenger, price) VALUES(?, ?, ?, ?, ?);";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -73,9 +89,9 @@ public class BusDao extends CommonDao {
 		}
 	}
 
-	public void insert(InsertBusBean[] buses) {
+	public void insert(BusBean[] buses) {
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			for (InsertBusBean bus: buses) {
+			for (BusBean bus: buses) {
 				String sql = "INSERT INTO timetable(start, end, departure, maxPassenger, price) VALUES(?, ?, ?, ?, ?);";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setString(1, bus.getStart());
@@ -86,6 +102,21 @@ public class BusDao extends CommonDao {
 
 				ps.executeUpdate();
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void delete(int id) {
+		if (!this.isExistsBus(id)) return;
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "DETELE FROM bus WHERE busId = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

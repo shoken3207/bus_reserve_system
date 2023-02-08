@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+	String email = (String) request.getAttribute("email");
+	email = email != null ? email : "";
+%>
 <!DOCTYPE html>
 
 <html>
@@ -21,7 +24,7 @@
 
 				<form  action="login" method="post">
 					<p class="form_in_p">E-mail Address <span class="ast">*</span></p><br>
-					<input class="text_inp" placeholder="E-mail" type="text" name="email" required/><br><br>
+					<input class="text_inp" placeholder="E-mail" type="text" name="email" value="<%= email %>" required/><br><br>
 
 					<p class="form_in_p">Password <span class="ast">*</span></p><br>
 					<input class="text_inp" placeholder="Password" type="password" name="password" required/><br>

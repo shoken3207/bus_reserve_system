@@ -11,10 +11,6 @@ import java.util.List;
 import model.SeatsBean;
 
 public class SeatsDao extends CommonDao {
-//	public SeatsDao() {
-//		this.seatsDao = this;
-//	}
-
 	public ArrayList<SeatsBean> findAll() {
 		ArrayList<SeatsBean> seats = new ArrayList<SeatsBean>();
 
@@ -63,7 +59,7 @@ public class SeatsDao extends CommonDao {
 		return this.findReserve(userId, busId, seatId) != null;
 	}
 
-	public void insert(ArrayList<SeatsBean> seats) {
+	public boolean insert(ArrayList<SeatsBean> seats) {
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 			for (SeatsBean seat: seats) {
 				String sql = "INSERT INTO seats VALUES(?, ?, ?);";
@@ -74,6 +70,24 @@ public class SeatsDao extends CommonDao {
 
 				ps.executeUpdate();
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public void delete(int id) {
+		ReserveDao reserveDao = new ReserveDao();
+		if (!reserveDao.isExistsReserve(id)) return;
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "DETELE FROM reserve WHERE reserveId = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

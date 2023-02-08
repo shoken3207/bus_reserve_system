@@ -11,10 +11,6 @@ import java.util.List;
 import model.ReserveBean;
 
 public class ReserveDao extends CommonDao {
-	public ReserveDao() {
-		this.reserveDao = this;
-	}
-
 	public List<ReserveBean> findAll() {
 		List<ReserveBean> reserves = new ArrayList<ReserveBean>();
 
@@ -30,7 +26,6 @@ public class ReserveDao extends CommonDao {
 				int seats = rs.getInt("seats");
 
 				ReserveBean reserve = new ReserveBean(reserveId, userId, busId, seats);
-				System.out.println("aaa");
 				reserves.add(reserve);
 			}
 		} catch (SQLException e) {
@@ -52,5 +47,45 @@ public class ReserveDao extends CommonDao {
 
 	public boolean isExistsReserve(int id) {
 		return this.findReserve(id) != null;
+	}
+
+	public void insert(ReserveBean reserve) {
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "INSERT INTO reserve(userId, busId, seats) VALUES(?, ?, ?);";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, reserve.getUserId());
+			ps.setInt(2, reserve.getBusId());
+			ps.setInt(3, reserve.getSeats());
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<ReserveBean> findAllReserveByUserId(int userId) {
+		List<ReserveBean> userReserveList = new ArrayList<ReserveBean>();
+
+		List<ReserveBean> reserves = this.findAll();
+		for (ReserveBean reserve: reserves) {
+			if (reserve.getUserId() == userId) userReserveList.add(reserve);
+		}
+
+		return userReserveList;
+	}
+
+	@Override
+	public void delete(int id) {
+		if (!this.isExistsReserve(id)) return;
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "DETELE FROM reserve WHERE reserveId = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
