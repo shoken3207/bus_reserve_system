@@ -57,6 +57,24 @@ public class BusDao extends CommonDao {
 		return null;
 	}
 
+	public boolean compare(String str1, String str2) {
+		if (str2 == null) return true;
+		return str1.equals(str2);
+	}
+
+	public List<BusBean> findBus(String start, String end, String date) {
+		List<BusBean> buses = this.findAll();
+		List<BusBean> result = new ArrayList<BusBean>();
+
+		for (BusBean bus: buses) {
+			if (this.compare(bus.getStart(), start) && this.compare(bus.getEnd(), end) && this.compare(bus.getDeparture().toString(), date)) {
+				result.add(bus);
+			}
+		}
+
+		return result;
+	}
+
 	public HashMap<Integer, BusBean> getBusBeans(int[] busIds) {
 		HashMap<Integer, BusBean> map = new HashMap<>();
 		List<BusBean> buses = this.findAll();
