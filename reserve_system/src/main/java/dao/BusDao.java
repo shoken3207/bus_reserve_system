@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import model.BusBean;
+import model.ReserveBean;
 
 public class BusDao extends CommonDao {
 	public ArrayList<BusBean> findAll() {
@@ -86,7 +87,22 @@ public class BusDao extends CommonDao {
 
 		return map;
 	}
-	
+
+	public int getRemainingSeats(int busId) {
+		BusBean target = this.findBusByBusId(busId);
+		if (target == null) return 0;
+
+		int passenger = target.getMaxPassenger();
+		ReserveDao reserveDao = new ReserveDao();
+		List<ReserveBean> reserves = reserveDao.findAll();
+
+		for (ReserveBean reserve: reserves) {
+			if (reserve.getBusId() == busId) passenger -= reserve.getSeats();
+		}
+
+		return passenger;
+	}
+
 	public boolean isExistsBus(int busId) {
 		return this.findBusByBusId(busId) != null;
 	}
