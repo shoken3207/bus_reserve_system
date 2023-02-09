@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>予約完了</title>
 <link rel="icon" href="img/ico.png">
 </head>
 <body>

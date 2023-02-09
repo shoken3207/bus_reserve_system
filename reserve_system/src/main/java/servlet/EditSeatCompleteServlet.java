@@ -29,6 +29,7 @@ public class EditSeatCompleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] selectedSeats = request.getParameter("reserveSeat").split(",");
 		int busId = Integer.parseInt(request.getParameter("busId"));
+		int reserveId = Integer.parseInt(request.getParameter("reserveId"));
 
 		HttpSession session = request.getSession();
 		UserBean user = (UserBean) session.getAttribute("user");
@@ -37,9 +38,7 @@ public class EditSeatCompleteServlet extends HttpServlet {
 		SeatsDao seatsDao = new SeatsDao();
 		ReserveDao reserveDao = new ReserveDao();
 
-		int reserveId = seatsDao.getReserveId(userId, busId, selectedSeats[0]);
 		seatsDao.delete(reserveId);
-
 
 		ArrayList<SeatsBean> seatsList = new ArrayList<SeatsBean>();
 		for (String seat: selectedSeats) {

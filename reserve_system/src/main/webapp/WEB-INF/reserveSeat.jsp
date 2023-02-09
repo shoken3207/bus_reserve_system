@@ -14,8 +14,10 @@
 	}
 	String reserveSeat = (String) request.getParameter("reservedSeats");
 	String[] reservedSeats = null;
+	int reserveId = 0;
 	if (isEdit) {
 		reservedSeats = reserveSeat.split(",");
+		reserveId = Integer.parseInt(request.getParameter("reserveId"));
 	}
 
 	String actionPath = isEdit ? "EditSeatConfirmServlet": "ReserveSeatConfirmServlet";
@@ -58,6 +60,9 @@
         <button onclick="reset()">リセット</button>
         <form action="<%= actionPath %>" method="POST" name="seatForm">
         	<input type="hidden" name="isEdit" value="<%= isEdit %>">
+        	<% if (isEdit) {%>
+        		<input type="hidden" name="reserveId" value="<%= reserveId %>">
+        	<% } %>
             <input type="hidden" name="selectedSeats">
             <input type="submit" id="submit" value="確定">
         </form>

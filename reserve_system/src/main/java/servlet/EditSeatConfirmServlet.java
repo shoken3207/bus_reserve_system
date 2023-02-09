@@ -28,12 +28,15 @@ public class EditSeatConfirmServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String selectedSeats = request.getParameter("selectedSeats");
 		int passenger = selectedSeats.split(",").length;
+		int reserveId = Integer.parseInt(request.getParameter("reserveId"));
 
 		HttpSession session = request.getSession();
 		int busId = (int) session.getAttribute("busId");
 		
 		BusDao busDao = new BusDao();
 		BusBean bus = busDao.findBusByBusId(busId);
+
+		session.setAttribute("reserveId", reserveId);
 		session.setAttribute("bus", bus);
 		session.setAttribute("passenger", passenger);
 		session.setAttribute("reserveSeat", selectedSeats);

@@ -6,6 +6,7 @@
 	BusBean bus = (BusBean) session.getAttribute("bus");
 	UserBean user = (UserBean) session.getAttribute("user");
 	int passenger = (int) session.getAttribute("passenger");
+	int reserveId = (int) session.getAttribute("reserveId");
 %>
 <!DOCTYPE html>
 <html>
@@ -78,7 +79,7 @@
 				</div>
 				<div class="buttons">
 					<a href="javascript:void(0)" class="button cancel" onclick="history.back()">キャンセル</a> 
-					<a href="EditSeatCompleteServlet?busId=<%=bus.getBusId()%>&reserveSeat=<%=reserveSeat%>" class="button confirm">確定</a>
+					<a href="EditSeatCompleteServlet?reserveId=<%= reserveId %>&busId=<%=bus.getBusId()%>&reserveSeat=<%=reserveSeat%>" class="button confirm">確定</a>
 				</div>
 			</div>
 		</div>

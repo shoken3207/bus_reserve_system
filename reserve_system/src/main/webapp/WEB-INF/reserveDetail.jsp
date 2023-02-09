@@ -75,7 +75,7 @@
 					</table>
 				</div>
 				<div class="buttons">
-					<a href="ReserveSeatServlet?busId=<%= bus.getBusId() %>&isEdit=true&reservedSeats=<%= reservedSeats %>">席を変更</a>
+					<a href="ReserveSeatServlet?reserveId=<%= reserve.getReserveId() %>&busId=<%= bus.getBusId() %>&isEdit=true&reservedSeats=<%= reservedSeats %>">席を変更</a>
 					<a href="ReserveListServlet">戻る</a>
 				</div>
 			</div>

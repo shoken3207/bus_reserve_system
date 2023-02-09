@@ -101,8 +101,8 @@ public class ReserveDao extends CommonDao {
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 			String sql = "UPDATE reserve SET seats = ? WHERE reserveId = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ps.setInt(2, seats);
+			ps.setInt(1, seats);
+			ps.setInt(2, id);
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
