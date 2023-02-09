@@ -59,7 +59,7 @@ public class BusDao extends CommonDao {
 	}
 
 	public boolean compare(String str1, String str2) {
-		if (str2 == null) return true;
+		if (str2 == null || str2.length() == 0) return true;
 		return str1.equals(str2);
 	}
 
@@ -68,6 +68,7 @@ public class BusDao extends CommonDao {
 		List<BusBean> result = new ArrayList<BusBean>();
 
 		for (BusBean bus: buses) {
+			System.out.println(this.compare(bus.getStart(), start) + " " + this.compare(bus.getEnd(), end) + " " + this.compare(bus.getDeparture().toString(), date));
 			if (this.compare(bus.getStart(), start) && this.compare(bus.getEnd(), end) && this.compare(bus.getDeparture().toString(), date)) {
 				result.add(bus);
 			}
