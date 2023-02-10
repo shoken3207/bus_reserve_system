@@ -34,6 +34,13 @@ body {
 	text-align: center;
 }
 
+main {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 /*外側要素　背景青*/
 .h1_div_out {
     background-color: rgb(50, 220, 220);
@@ -61,9 +68,6 @@ body {
 	margin: 0 auto;/*中央寄せ*/
 	padding: 60px 0;
 	background-color :rgb(233, 233, 233);
-	position:absolute;
-	left:15%;
-	top: 20%;
 	box-shadow: 4px 4px #0003;
 }
 
@@ -104,7 +108,8 @@ body {
 	padding :15px 30px;
 	background-color: black;
 	border-radius: 6px;
-  	transition: .3s;
+	transition: .3s;
+	cursor: pointer;
 }
 
 .main_sub:hover {
@@ -112,6 +117,23 @@ body {
 }
 
 .regist {
-	padding: 3px 5px;
-	width: fit-content;
+	margin-top: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.registButton {
+	color: #fff;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.registBtn {
+	text-decoration: none;
 }

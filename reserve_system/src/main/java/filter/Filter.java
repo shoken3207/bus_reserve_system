@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import consts.Definition;
+
 /**
  * Servlet Filter implementation class Filter
  */
@@ -25,7 +27,13 @@ public class Filter extends HttpFilter implements javax.servlet.Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		String target = ((HttpServletRequest)request).getRequestURI();
-		if (!target.equals("/reserve_system/login")) {
+
+		boolean isIgnore = false;
+		for (String url: Definition.ignoreURL) {
+			if (target.contains(url)) isIgnore = true;
+		}
+
+		if (!isIgnore) {
 			HttpSession session = ((HttpServletRequest) request).getSession();
 			if (session.getAttribute("user") == null) {
 				((HttpServletResponse) response).sendRedirect("login");

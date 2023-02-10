@@ -30,14 +30,16 @@
 					<p class="form_in_p">Password <span class="ast">*</span></p><br>
 					<input class="text_inp" placeholder="Password" type="password" name="password" required/><br>
 
-					<input class="main_sub" type="submit" value="LOGIN">
-
-				</form>
-				<div class="regist">
-					<div class="main_sub">
-						新規登録
+					<div class="buttons">
+						<input class="main_sub" type="submit" value="LOGIN">
+	
+						<div class="regist">
+							<div class="registButton">
+								<a href="CreateUser" class="main_sub registBtn">新規登録</a>
+							</div>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</main>
 	</body>
