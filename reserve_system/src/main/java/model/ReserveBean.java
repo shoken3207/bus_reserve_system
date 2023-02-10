@@ -1,12 +1,20 @@
 package model;
 
-public class ReserveBean {
+import java.io.Serializable;
+
+public class ReserveBean implements Serializable{
 	private int reserveId, userId, busId, seats;
 	
 	public ReserveBean() { }
 
 	public ReserveBean(int reserveId, int userId, int busId, int seats) {
 		this.setReserveId(reserveId);
+		this.setUserId(userId);
+		this.setBusId(busId);
+		this.setSeats(seats);
+	}
+
+	public ReserveBean(int userId, int busId, int seats) {
 		this.setUserId(userId);
 		this.setBusId(busId);
 		this.setSeats(seats);

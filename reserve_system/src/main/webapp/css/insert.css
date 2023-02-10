@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.error {
+	height: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.errorMessage {
+	color: #f00;
+}
+
+.inputText {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.data {
+	width: 50%;
+	height: 500px;
+	max-width: 500px;
+	min-width: 300px;
+	resize: none;
+	border-radius: 5px;
+	outline: #ddd;
+}
+
+.data:focus {
+	outline: none;
+}
