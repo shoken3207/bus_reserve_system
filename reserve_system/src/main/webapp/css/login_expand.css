@@ -110,3 +110,8 @@ body {
 .main_sub:hover {
   background: rgb(50, 220, 220);
 }
+
+.regist {
+	padding: 3px 5px;
+	width: fit-content;
+}

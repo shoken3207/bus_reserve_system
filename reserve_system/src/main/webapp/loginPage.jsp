@@ -10,9 +10,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/login_expand.css" >
+		<link rel="stylesheet" href="css/login_expand.css" >
 		<link rel="icon" href="img/ico.png">
-		<title>Rog in</title>
+		<title>Login</title>
 	</head>
 	<body>
 		<main>
@@ -33,6 +33,11 @@
 					<input class="main_sub" type="submit" value="LOGIN">
 
 				</form>
+				<div class="regist">
+					<div class="main_sub">
+						新規登録
+					</div>
+				</div>
 			</div>
 		</main>
 	</body>
