@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		if (user != null && user.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			forwardPath = "mypage.jsp";
+			forwardPath = "WEB-INF/myPage.jsp";
 			System.out.println("login: " + user.getUserId());
 		} else {
 			forwardPath = "loginPage.jsp";

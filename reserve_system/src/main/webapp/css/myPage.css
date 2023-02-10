@@ -1,0 +1,194 @@
+@charset "UTF-8";
+
+
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PT Serif", serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  margin: 0 auto;
+}
+.header {
+  background-image: url(../img/vw-bus-g37e8697f7_1920.jpg);
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.header .logo {
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+  line-height: 2.3rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: skyblue;
+}
+
+li {
+  list-style: none;
+}
+
+.link-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link {
+  position: relative;
+  display: inline-block;
+  transition: all 0.4s;
+  text-align: center;
+}
+
+.link:hover::after {
+  transform: scaleX(100);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(5px) scaleX(0);
+  transition: all 0.4s;
+  transform-origin: left;
+  height: 2px;
+  width: 100%;
+  background-color: purple;
+}
+
+.btn-group {
+  display: flex;
+  row-gap: 2.5rem;
+  /* align-items: center; */
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.btn-group .btn {
+  /* padding: 1rem 2rem; */
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  width: 200px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 10px;
+  transition: all 0.3s;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.btn-group .btn::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translatex(-100%);
+  background-color: black;
+  transition: all 0.3s;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.btn-group .btn.reserve {
+  border: 1px solid skyblue;
+  color: skyblue;
+}
+.btn-group .btn.reserved {
+  border: 1px solid green;
+  color: green;
+}
+.btn-group .btn.profile {
+  border: 1px solid orange;
+  color: orange;
+}
+.btn-group .btn.logout {
+  border: 1px solid red;
+  color: red;
+}
+
+.btn-group .btn.reserve::before {
+  background-color: skyblue;
+}
+.btn-group .btn.reserved::before {
+  background-color: green;
+}
+.btn-group .btn.profile::before {
+  background-color: orange;
+}
+.btn-group .btn.logout::before {
+  background-color: red;
+}
+
+.btn-group .btn:hover::before {
+  transform: none;
+}
+
+.btn-group .btn:hover {
+  color: white;
+}
+
+.logoutBtn {
+  display: inline-block;
+  color: white;
+  background-color: red;
+}
+
+/* .btn-group .btn.reserve:hover {
+  color: white;
+  background-color: skyblue;
+}
+.btn-group .btn.profile:hover {
+  background-color: orange;
+  color: white;
+} */
+
+@media screen and (max-width: 450px) {
+  .btn-group {
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 1rem;
+  }
+
+  .info {
+    padding: 1rem;
+  }
+
+  .btn-group .btn {
+    width: 90%;
+    text-align: center;
+  }
+}
