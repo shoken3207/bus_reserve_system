@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("reserve.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("loginPage.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -34,22 +33,25 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		ServletContext application = request.getServletContext();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
 		UserDao userDao = new UserDao();
 		UserBean user = userDao.getUserByEmail(email);
 
+		String forwardPath = "";
+
 		if (user != null && user.getPassword().equals(password)) {
-			System.out.println(user);
+			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			application.setAttribute("user", user);
+			forwardPath = "mypage.jsp";
+			System.out.println("login: " + user.getUserId());
+		} else {
+			forwardPath = "loginPage.jsp";
+			request.setAttribute("email", email);
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
 		dispatcher.forward(request, response);
 	}
-
 }

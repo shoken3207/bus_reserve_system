@@ -16,10 +16,10 @@ import model.BusBean;
 import model.UserBean;
 
 /**
- * Servlet implementation class ReserveSeatConfirmServlet
+ * Servlet implementation class EditSeatConfirmServlet
  */
-@WebServlet("/ReserveSeatConfirmServlet")
-public class ReserveSeatConfirmServlet extends HttpServlet {
+@WebServlet("/EditSeatConfirmServlet")
+public class EditSeatConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -28,12 +28,15 @@ public class ReserveSeatConfirmServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String selectedSeats = request.getParameter("selectedSeats");
 		int passenger = selectedSeats.split(",").length;
+		int reserveId = Integer.parseInt(request.getParameter("reserveId"));
 
 		HttpSession session = request.getSession();
 		int busId = (int) session.getAttribute("busId");
 		
 		BusDao busDao = new BusDao();
 		BusBean bus = busDao.findBusByBusId(busId);
+
+		session.setAttribute("reserveId", reserveId);
 		session.setAttribute("bus", bus);
 		session.setAttribute("passenger", passenger);
 		session.setAttribute("reserveSeat", selectedSeats);
@@ -45,7 +48,7 @@ public class ReserveSeatConfirmServlet extends HttpServlet {
 			session.setAttribute("user", user);
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/reserveSeatConfirm.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/editSeatConfirm.jsp");
 		dispatcher.forward(request, response);
 	}
 

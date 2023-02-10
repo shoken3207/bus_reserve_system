@@ -14,6 +14,12 @@ public class ReserveBean implements Serializable{
 		this.setSeats(seats);
 	}
 
+	public ReserveBean(int userId, int busId, int seats) {
+		this.setUserId(userId);
+		this.setBusId(busId);
+		this.setSeats(seats);
+	}
+
 	public int getReserveId() {
 		return reserveId;
 	}
