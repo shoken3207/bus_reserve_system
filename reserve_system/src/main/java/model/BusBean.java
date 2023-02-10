@@ -19,14 +19,6 @@ public class BusBean implements Serializable {
 		this.setPrice(price);
 	}
 
-	public BusBean(String start, String end, Date departure, int maxPassenger, int price) {
-		this.setStart(start);
-		this.setEnd(end);
-		this.setDeparture(departure);
-		this.setMaxPassenger(maxPassenger);
-		this.setPrice(price);
-	}
-
 	public int getBusId() {
 		return busId;
 	}
