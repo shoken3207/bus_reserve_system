@@ -52,6 +52,7 @@ body {
     width: 30%;
     margin: 0 auto; /*div_int_02の要素自体を中央揃えにする*/
     padding-top:10px;
+    font-weight: bold;
 }
 
 
@@ -81,9 +82,10 @@ body {
 	margin :0%;
 	padding : 10px 30px;
 	border: none;
+	outline:none;
 }
 
-.text_inp:hover {
+.text_inp:focus {
 	background-color: rgb(255, 210, 128);
 }
 
