@@ -90,7 +90,7 @@ public class UserDao extends CommonDao {
 		if (!this.isExistsUser(id)) return;
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "DETELE FROM user WHERE userId = ?";
+			String sql = "DELETE FROM user WHERE userId = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 

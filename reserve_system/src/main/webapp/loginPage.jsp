@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/login_expand.css" >
 		<link rel="icon" href="img/ico.png">
-		<title>	TOP</title>
+		<title>ログイン</title>
 	</head>
 	<body>
 		<main>

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="model.BusBean, model.UserBean, model.ReserveBean"%>
+<%@ page import="model.BusBean, model.UserBean"%>
 <%
-	String reservedSeats = (String) request.getAttribute("reservedSeats");
-	BusBean bus = (BusBean) request.getAttribute("bus");
+	String reserveSeat = (String) session.getAttribute("reserveSeat");
+	BusBean bus = (BusBean) session.getAttribute("bus");
 	UserBean user = (UserBean) session.getAttribute("user");
-	ReserveBean reserve = (ReserveBean) request.getAttribute("reserve");
+	int passenger = (int) session.getAttribute("passenger");
+	int reserveId = (int) session.getAttribute("reserveId");
 %>
 <!DOCTYPE html>
 <html>
@@ -13,14 +14,14 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/reserveSeatConfirm.css">
 <link rel="icon" href="img/ico.png">
-<title>予約確認</title>
+<title>内容確認</title>
 </head>
 <body>
 	<div class="reserveSeat">
 		<div class="body">
 			<div class="container">
 				<div class="confirmText">
-					<p>予約確認</p>
+					<p>以下の内容で予約を行いますか？</p>
 				</div>
 				<div class="main">
 					<table>
@@ -61,7 +62,8 @@
 								<p>人数</p>
 							</td>
 							<td class="col val">
-								<p><%=reserve.getSeats()%>名様</p>
+								<p><%=passenger%>名様
+								</p>
 							</td>
 						</tr>
 						<tr class="row">
@@ -69,14 +71,15 @@
 								<p>料金</p>
 							</td>
 							<td class="col val">
-								<p><%=bus.getPrice() * reserve.getSeats()%>円</p>
+								<p><%=bus.getPrice() * passenger%>円
+								</p>
 							</td>
 						</tr>
 					</table>
 				</div>
 				<div class="buttons">
-					<a href="ReserveSeatServlet?reserveId=<%= reserve.getReserveId() %>&busId=<%= bus.getBusId() %>&isEdit=true&reservedSeats=<%= reservedSeats %>">席を変更</a>
-					<a href="ReserveListServlet">戻る</a>
+					<a href="javascript:void(0)" class="button cancel" onclick="history.back()">キャンセル</a> 
+					<a href="EditSeatCompleteServlet?reserveId=<%= reserveId %>&busId=<%=bus.getBusId()%>&reserveSeat=<%=reserveSeat%>" class="button confirm">確定</a>
 				</div>
 			</div>
 		</div>
