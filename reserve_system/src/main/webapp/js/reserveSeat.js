@@ -2,13 +2,16 @@ const seats  = document.getElementById('seats');
 const submit = document.getElementById('submit');
 const boxes = document.getElementsByClassName('box');
 
-let counter = 0;
 let k = 0;
 const alpha = ['a', 'b', 'c', 'd'];
-let selectedList = [];
 
-submit.disabled = true;
-seats.innerHTML = `${counter}席確保`;
+const init = () => {
+	document.seatForm.selectedSeats.value = selectedList;
+	submit.disabled = counter == 0;
+	seats.innerHTML = `${counter}席確保`;
+}
+
+init();
 
 Array.from(boxes).forEach(e => {
     const i = Math.floor(k / 4);
@@ -37,8 +40,6 @@ const reset = () => {
 		e.classList.remove('selected');
 	})
 	selectedList = [];
-	document.seatForm.selectedSeats.value = selectedList;
-	submit.disabled = true;
 	counter = 0;
-	seats.innerHTML = `${counter}席確保`;
+	init();
 }

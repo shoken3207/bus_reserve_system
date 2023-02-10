@@ -3,10 +3,17 @@ package model;
 import java.io.Serializable;
 
 public class SeatsBean implements Serializable {
-	private int userId, busId;
+	private int userId, busId, reserveId;
 	private String seatId;
 
 	public SeatsBean() { }
+
+	public SeatsBean(int userId, int busId, String seatId, int reserveId) {
+		this.setUserId(userId);
+		this.setBusId(busId);
+		this.setSeatId(seatId);
+		this.setReserveId(reserveId);
+	}
 
 	public SeatsBean(int userId, int busId, String seatId) {
 		this.setUserId(userId);
@@ -36,6 +43,14 @@ public class SeatsBean implements Serializable {
 
 	public void setSeatId(String seatId) {
 		this.seatId = seatId;
+	}
+
+	public int getReserveId() {
+		return reserveId;
+	}
+
+	public void setReserveId(int reserveId) {
+		this.reserveId = reserveId;
 	}
 
 }

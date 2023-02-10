@@ -32,7 +32,7 @@ public class ReserveSeatServlet extends HttpServlet {
 		SeatsDao seatsDao = new SeatsDao();
 
 		BusBean bus = busDao.findBusByBusId(busId);
-		String[] reservedSeats = seatsDao.getReservedSeats(busId);
+		String[] reservedSeats = seatsDao.getReservedSeatsByBusId(busId);
 
 		HttpSession session = request.getSession();
 		session.setAttribute("busId", busId);
