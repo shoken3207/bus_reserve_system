@@ -14,7 +14,7 @@ import model.UserBean;
 /**
  * Servlet implementation class MyPageServlet
  */
-@WebServlet("/MyPageServlet")
+@WebServlet("/Mypage")
 public class MyPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -23,7 +23,8 @@ public class CreateUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("register.html");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -39,8 +40,7 @@ public class CreateUserServlet extends HttpServlet {
 		UserDao userDao = new UserDao();
 		userDao.insert(user);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("");
-		dispatcher.forward(request, response);
+		response.sendRedirect("Mypage");
 	}
 
 }
