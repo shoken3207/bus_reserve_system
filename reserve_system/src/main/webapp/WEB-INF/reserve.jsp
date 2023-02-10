@@ -49,11 +49,12 @@
        			for(BusBean busItem : busList) {       		
        		%>
        			<div class="busItem">
+       				<input type="hidden" value=<%=busItem.getBusId() %> />
        				<h3>日付: <%=busItem.getDeparture() %></h3>
        				<h4 class="route"><%= busItem.getStart() + " ～ " + busItem.getEnd() %></h4>
        				<p>料金: <%=busItem.getPrice() %></p>
        				<h2>残り乗車人数<%= busDao.getRemainingSeats(busItem.getBusId())%></h2>
-       				<a class="transitionBtn" href="#">予約</a>
+       				<a href="/reserve_system/ReserveSeatServlet" class="transitionBtn" href="#">予約</a>
        			</div>
        		<%
        			}

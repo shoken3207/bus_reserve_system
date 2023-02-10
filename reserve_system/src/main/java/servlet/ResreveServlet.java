@@ -33,7 +33,7 @@ public class ResreveServlet extends HttpServlet {
 		request.setAttribute("busList", buses);
 		request.setAttribute("startList", startList);
 		request.setAttribute("endList", endList);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/reserveSample.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/reserve.jsp");
 		dispatcher.forward(request, response);
 	}
 

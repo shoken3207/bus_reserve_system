@@ -70,6 +70,7 @@ form {
 }
 
 .busItem.isShow {
+	pointer-events: auto;
   transform: none;
   opacity: 1;
 }
