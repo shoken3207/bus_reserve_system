@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import dao.BusDao;
 import dao.ReserveDao;
-import dao.UserDao;
 import model.BusBean;
 import model.ReserveBean;
 import model.UserBean;
@@ -33,11 +32,6 @@ public class ReserveListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		UserBean user = (UserBean) session.getAttribute("user");
-
-		if (user == null) {
-			UserDao userDao = new UserDao();
-			user = userDao.getUserByUserId(1);
-		}
 
 		ReserveDao reserveDao = new ReserveDao();
 		Utils utils = new Utils();
