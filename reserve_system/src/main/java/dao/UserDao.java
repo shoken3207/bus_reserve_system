@@ -11,6 +11,10 @@ import java.util.List;
 import model.UserBean;
 
 public class UserDao extends CommonDao {
+	public UserDao() {
+		this.userDao = this;
+	}
+
 	public List<UserBean> findAll() {
 		List<UserBean> users = new ArrayList<UserBean>();
 
@@ -24,7 +28,7 @@ public class UserDao extends CommonDao {
 				String password = rs.getString("password");
 				String email = rs.getString("email");
 				String name = rs.getString("name");
-				String phone = rs.getString("phone");
+				int phone = rs.getInt("phone");
 
 				UserBean user = new UserBean(userId, password, email, name, phone);
 				users.add(user);
@@ -34,21 +38,6 @@ public class UserDao extends CommonDao {
 		}
 
 		return users;
-	}
-
-	public void insert(UserBean user) {
-		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "INSERT INTO user(password, email, name, phone) VALUES(?, ?, ?, ?);";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, user.getPassword());
-			ps.setString(2, user.getEmail());
-			ps.setString(3, user.getName());
-			ps.setString(4, user.getPhone());
-
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public UserBean findUser(int userId) {
@@ -63,40 +52,5 @@ public class UserDao extends CommonDao {
 	
 	public boolean isExistsUser(int userId) {
 		return this.findUser(userId) != null;
-	}
-
-	public UserBean getUserByUserId(int userId) {
-		List<UserBean> users = this.findAll();
-
-		for (UserBean user: users) {
-			if (user.getUserId() == userId) return user;
-		}
-
-		return null;
-	}
-
-	public UserBean getUserByEmail(String email) {
-		List<UserBean> users = this.findAll();
-
-		for (UserBean user: users) {
-			if (user.getEmail().equals(email)) return user;
-		}
-
-		return null;
-	}
-
-	@Override
-	public void delete(int id) {
-		if (!this.isExistsUser(id)) return;
-
-		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "DELETE FROM user WHERE userId = ?;";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 }

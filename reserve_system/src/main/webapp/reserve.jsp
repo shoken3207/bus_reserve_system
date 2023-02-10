@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>編集完了</title>
-<link rel="icon" href="img/ico.png">
+<title>高速バス予約システム</title>
 </head>
 <body>
-	<p>編集が完了しました。</p>
-	<a href="ReserveListServlet">予約一覧へ</a>
+	<h1>aaa</h1>
+	<script type="text/javascript" src="../js/main.js"></script>
 </body>
 </html>

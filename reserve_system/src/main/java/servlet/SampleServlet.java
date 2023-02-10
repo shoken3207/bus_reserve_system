@@ -20,7 +20,7 @@ public class SampleServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("loginSample.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("reserve.jsp");
 		dispatcher.forward(request, response);
 	}
 
