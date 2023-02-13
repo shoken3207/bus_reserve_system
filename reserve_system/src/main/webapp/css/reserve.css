@@ -1,0 +1,76 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+.container {
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.inputArea {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.8rem;
+}
+
+.input {
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.select {
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+.busList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.busItem {
+  width: 85%;
+  max-width: 450px;
+  /* height: 200px; */
+  box-shadow: 8px 8px 20px -6px #777777;
+  border-radius: 10px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transition: all 0.6s;
+  transform: translateY(-15px);
+  margin: 0 auto;
+  opacity: 0;
+}
+
+.transitionBtn {
+	text-decoration: none;
+	padding: .4rem .8rem;
+}
+
+.busItem.isShow {
+	pointer-events: auto;
+  transform: none;
+  opacity: 1;
+}
