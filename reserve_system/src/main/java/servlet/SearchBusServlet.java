@@ -51,12 +51,10 @@ public class SearchBusServlet extends HttpServlet {
 		String start = request.getParameter("start");
 		String end   = request.getParameter("end");
 		String date  = request.getParameter("date");
-		System.out.println(start + end + date);
 
 		BusDao busDao = new BusDao();
 		ArrayList<BusBean> buses = busDao.findAll();
 		List<BusBean> list = busDao.findBus(start, end, date);
-		System.out.println("list" + list);
 
 		String[] startList = buses.stream().map(e -> e.getStart()).distinct().toArray(String[]::new);
 		String[] endList = buses.stream().map(e -> e.getEnd()).distinct().toArray(String[]::new);

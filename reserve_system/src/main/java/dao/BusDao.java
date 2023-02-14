@@ -68,7 +68,6 @@ public class BusDao extends CommonDao {
 		List<BusBean> result = new ArrayList<BusBean>();
 
 		for (BusBean bus: buses) {
-			System.out.println(this.compare(bus.getStart(), start) + " " + this.compare(bus.getEnd(), end) + " " + this.compare(bus.getDeparture().toString(), date));
 			if (this.compare(bus.getStart(), start) && this.compare(bus.getEnd(), end) && this.compare(bus.getDeparture().toString(), date)) {
 				result.add(bus);
 			}
