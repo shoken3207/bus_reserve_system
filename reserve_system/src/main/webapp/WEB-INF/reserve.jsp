@@ -22,8 +22,13 @@
 <body>
 	<div class="container">
       <form method="post" action="SearchBusServlet" class="reserveForm">
-        <input type="date" name="date" class="selectDate input" />
-        <select name="start" id="" class="selectStart select">
+      	<div class="inputArea">
+      		<label class="label" form="date">日付入力</label>
+        	<input type="date" id="date" name="date" class="selectDate input" />
+      	</div>
+      	<div class="inputArea">
+      		<label class="label" form="start">出発地点入力</label>
+        	<select name="start" id="start" class="selectStart select">
         	<option value="">スタート地点を選択</option>
         	<%
         		for(String start : startList) {
@@ -33,7 +38,11 @@
         		}
         	%>
         </select>
-        <select name="end" id="" class="selectEnd select">
+      	</div>
+      	
+      	<div class="inputArea">
+      		<label class="label" form="end">到着地点入力</label>
+        	<select name="end" id="end" class="selectEnd select">
         	<option value="">到着地点を選択</option>
         	<%
         		for(String end : endList) {
@@ -43,7 +52,10 @@
         		}
         	%>
         </select>
-        <input type="submit" class="searchBtn">この条件で探す</input>
+      	</div>
+        
+        
+        <input type="submit" class="searchBtn" value="この条件で探す" />
       </form>
        <div class="busList">
        		<%
@@ -55,7 +67,7 @@
        				<h4 class="route"><%= busItem.getStart() + " ～ " + busItem.getEnd() %></h4>
        				<p>料金: <%=busItem.getPrice() %></p>
        				<h2>残り乗車人数<%= busDao.getRemainingSeats(busItem.getBusId())%></h2>
-       				<a href="/reserve_system/ReserveSeatServlet" class="transitionBtn" href="#">予約</a>
+       				<a class="transitionBtn" href="/reserve_system/ReserveSeatServlet?busId=<%=busItem.getBusId() %>" class="transitionBtn">予約</a>
        			</div>
        		<%
        			}

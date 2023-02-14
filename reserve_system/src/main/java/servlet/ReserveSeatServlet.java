@@ -26,7 +26,6 @@ public class ReserveSeatServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String parameterBusId = request.getParameter("busId");
-		System.out.println(parameterBusId);
 		int busId = parameterBusId != null ? Integer.parseInt(parameterBusId): 1;
 
 		BusDao busDao = new BusDao();

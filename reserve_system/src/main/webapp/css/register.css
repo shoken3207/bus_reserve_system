@@ -40,6 +40,7 @@ h1 {
 	row-gap: 1rem;
 }
 
+
 .form .inputArea {
 	display: flex;
 	flex-direction: column;
@@ -53,19 +54,45 @@ h1 {
 	outline: none;
 }
 
-.submitBtn {
-	height: 40px;
-	border-radius: 10px;
-	width: 100%;
-	color: white;
-	background-color: skyblue;
+.btnGroup {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 1.5rem;
+}
+
+.btn {
 	border: none;
+	padding: .6rem 2rem;
+	color: white;
+	text-decoration: none;
+	border-radius: 10px;
+	transition: all .4s;
 	cursor: pointer;
-	transition: all .3s;
+}
+
+
+.transitionBtn {
+	border: 1px solid green;
+	color: green;
+	background-color: white;
+	
+}
+
+.transitionBtn:hover {
+	background-color: green;
+	color: white;
+	border: none;
+}
+
+.submitBtn {
+	border: 1px solid skyblue;
+	color: skyblue;
+	background-color: white;
 }
 
 .submitBtn:hover {
-	background-color: white;
-	border: 1px solid skyblue;
-	color: skyblue;
+	background-color: skyblue;
+	color: white;
+	border: none;
 }

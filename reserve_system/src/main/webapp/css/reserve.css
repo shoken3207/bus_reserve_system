@@ -8,7 +8,7 @@
 .container {
   width: 80%;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 2rem auto 0 auto;
 }
 
 form {
@@ -20,7 +20,7 @@ form {
 .inputArea {
   display: flex;
   flex-direction: column;
-  row-gap: 0.4rem;
+  row-gap: 0.1rem;
 }
 
 .label {
@@ -36,6 +36,24 @@ form {
 .select {
   padding: 8px 12px;
   border-radius: 10px;
+}
+
+.searchBtn {
+	padding: .5rem 1rem;
+	border-radius: 10px;
+	outline: none;
+	background-color: green;
+	color: white;
+	cursor: pointer;
+	border: none;
+	width: 160px;
+	box-shadow: 8px 8px 20px -6px green;
+	transition: all .3s;
+}
+
+.searchBtn:hover {
+	transform: translate(8px,8px);
+	box-shadow: none;	
 }
 
 .busList {
@@ -65,8 +83,18 @@ form {
 }
 
 .transitionBtn {
+	padding: .5rem 2rem;
+	border-radius: 10px;
 	text-decoration: none;
-	padding: .4rem .8rem;
+	transition: all .3s;
+	color: black;
+	background-color: white;
+	border: 1px black solid;
+}
+
+.transitionBtn:hover {
+	background-color: black;
+	color: white;
 }
 
 .busItem.isShow {
@@ -74,3 +102,4 @@ form {
   transform: none;
   opacity: 1;
 }
+
