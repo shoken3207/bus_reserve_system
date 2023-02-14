@@ -36,7 +36,7 @@
     </header>
     <div class="main">
         <div class="bus">
-            <% for (int i = 0; i <= maxPassenger / 4; i++) { %>
+            <% for (int i = 0; i < maxPassenger / 4; i++) { %>
                 <div class="row">
                     <%
                     	for (int j = 0; j < 4; j++) {
