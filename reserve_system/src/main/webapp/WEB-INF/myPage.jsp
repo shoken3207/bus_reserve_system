@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>マイページ</title>
 <link rel="stylesheet" href="css/myPage.css">
+<link rel="icon" href="img/ico.png">
 </head>
 <body>
 	<div class="container">

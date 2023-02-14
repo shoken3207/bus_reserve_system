@@ -17,6 +17,7 @@
 <meta charset="UTF-8">
 <title>バス情報検索</title>
 <link rel="stylesheet" href="css/reserve.css" />
+<link rel="icon" href="img/ico.png">
 </head>
 <body>
 	<div class="container">

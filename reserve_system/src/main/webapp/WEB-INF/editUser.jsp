@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>ユーザー情報編集</title>
 <link rel="stylesheet" href="css/register.css">
+<link rel="icon" href="img/ico.png">
 </head>
 <body>
 	<div class="container">
