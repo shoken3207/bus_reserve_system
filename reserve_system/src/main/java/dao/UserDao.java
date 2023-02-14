@@ -51,6 +51,21 @@ public class UserDao extends CommonDao {
 		}
 	}
 
+	public void update(UserBean user) {
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			String sql = "UPDATE user SET email = ?, name = ?, phone = ? WHERE userId=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getEmail());
+			ps.setString(2, user.getName());
+			ps.setString(3, user.getPhone());
+			ps.setInt(4, user.getUserId());
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public UserBean findUser(int userId) {
 		List<UserBean> users = this.findAll();
 		

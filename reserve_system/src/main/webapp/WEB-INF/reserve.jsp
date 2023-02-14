@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>バス情報検索</title>
 <link rel="stylesheet" href="css/reserve.css" />
 </head>
 <body>

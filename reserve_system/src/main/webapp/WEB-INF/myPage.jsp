@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>マイページ</title>
 <link rel="stylesheet" href="css/myPage.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
       <div class="btn-group">
         <a href="/reserve_system/ResreveServlet" class="btn reserve">予約</a>
         <a href="/reserve_system/ReserveListServlet" class="btn reserved">予約したバス一覧</a>
-        <a href="#" class="btn profile">プロフィール編集</a>
+        <a href="/reserve_system/editUser" class="btn profile">プロフィール編集</a>
         <a href="/reserve_system/logout" class="btn logout">ログアウト</a>
       </div>
     </div>

@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>バスデータ入力</title>
 <link rel="stylesheet" href="css/insert.css">
 <link rel="icon" href="img/ico.png">
 </head>
