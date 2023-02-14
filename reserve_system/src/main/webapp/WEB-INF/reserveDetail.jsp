@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/reserveSeatConfirm.css">
 <link rel="icon" href="img/ico.png">
-<title>予約確認</title>
+<title>予約変更</title>
 </head>
 <body>
 	<div class="reserveSeat">
@@ -75,8 +75,8 @@
 					</table>
 				</div>
 				<div class="buttons">
-					<a href="ReserveSeatServlet?reserveId=<%= reserve.getReserveId() %>&busId=<%= bus.getBusId() %>&isEdit=true&reservedSeats=<%= reservedSeats %>">席を変更</a>
-					<a href="ReserveListServlet">戻る</a>
+					<a href="ReserveSeatServlet?reserveId=<%= reserve.getReserveId() %>&busId=<%= bus.getBusId() %>&isEdit=true&reservedSeats=<%= reservedSeats %>" class="button">席を変更</a>
+					<a href="ReserveListServlet" class="button">戻る</a>
 				</div>
 			</div>
 		</div>

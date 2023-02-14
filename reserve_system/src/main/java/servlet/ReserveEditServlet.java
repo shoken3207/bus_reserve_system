@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import dao.BusDao;
 import dao.ReserveDao;
 import dao.SeatsDao;
-import dao.UserDao;
 import model.BusBean;
 import model.ReserveBean;
 import model.UserBean;
@@ -40,14 +39,9 @@ public class ReserveEditServlet extends HttpServlet {
 		ReserveBean reserve = reserveDao.findReserve(reserveId);
 		String[] reservedSeats = seatsDao.getReservedSeatsByReserveId(reserveId);
 
-		if (user == null) {
-			UserDao userDao = new UserDao();
-			user = userDao.getUserByUserId(1);
-			session.setAttribute("user", user);
-		} else {
-			if (user.getUserId() != reserve.getUserId()) {
-				/* TODO error */
-			}
+		if (user.getUserId() != reserve.getUserId()) {
+			response.sendRedirect("login");
+			return;
 		}
 
 		BusBean bus = busDao.findBusByBusId(reserve.getBusId());

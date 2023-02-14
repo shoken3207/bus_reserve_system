@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.BusDao;
-import dao.UserDao;
 import model.BusBean;
-import model.UserBean;
 
 /**
  * Servlet implementation class ReserveSeatConfirmServlet
@@ -37,13 +35,6 @@ public class ReserveSeatConfirmServlet extends HttpServlet {
 		session.setAttribute("bus", bus);
 		session.setAttribute("passenger", passenger);
 		session.setAttribute("reserveSeat", selectedSeats);
-
-		UserBean user = (UserBean) session.getAttribute("user");
-		if (user == null) {
-			UserDao userDao = new UserDao();
-			user = userDao.getUserByUserId(1);
-			session.setAttribute("user", user);
-		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/reserveSeatConfirm.jsp");
 		dispatcher.forward(request, response);
