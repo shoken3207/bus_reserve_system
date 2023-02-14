@@ -10,5 +10,6 @@
 <body>
 	<p>編集が完了しました。</p>
 	<a href="ReserveListServlet">予約一覧へ</a>
+	<a href="mypage">マイページへ</a>
 </body>
 </html>

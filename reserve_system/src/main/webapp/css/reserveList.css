@@ -58,3 +58,20 @@ a:hover {
 .remove {
 	color: #f00;
 }
+
+.notfound {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mypagecontainer {
+	margin-top: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mypage {
+	width: fit-content;
+}
