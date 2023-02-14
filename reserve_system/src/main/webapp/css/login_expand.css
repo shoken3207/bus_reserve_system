@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 * {
-	font-family: "BIZ UDPゴシック","BIZ UDPGothic";
 	box-sizing:border-box;
 	float: none;
 	position: static;
@@ -60,6 +59,7 @@ main {
     margin: 0 auto; /*div_int_02の要素自体を中央揃えにする*/
     padding-top:10px;
     font-weight: bold;
+    font-family: serif;
 }
 
 
@@ -105,11 +105,15 @@ main {
 	color: white;
 	border: none;
 	margin-top: 40px;
-	padding :15px 30px;
 	background-color: black;
 	border-radius: 6px;
 	transition: .3s;
 	cursor: pointer;
+	width: 135px;
+	height: 46px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .main_sub:hover {
@@ -117,7 +121,6 @@ main {
 }
 
 .regist {
-	margin-top: 40px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -131,9 +134,14 @@ main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 1rem;
+	gap: 5rem;
 }
 
 .registBtn {
 	text-decoration: none;
+}
+
+.form_in_p, .text_inp, .main_sub {
+	font-family: "BIZ UDPゴシック","BIZ UDPGothic";
+	
 }

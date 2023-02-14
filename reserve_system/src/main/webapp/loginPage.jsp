@@ -35,7 +35,7 @@
 	
 						<div class="regist">
 							<div class="registButton">
-								<a href="CreateUser" class="main_sub registBtn">新規登録</a>
+								<a href="CreateUser" class="main_sub registBtn">SIGN UP</a>
 							</div>
 						</div>
 					</div>
